@@ -1,21 +1,21 @@
 // "Это то, что нужно запихнуть в index.js"
 
-import API from './js/API';
+// import API from './js/API';
 
 // Запрос на первую страницу (page=1) популярных фильмов при первой загрузке страницы
 // В ответ получаем массив обьектов response.data.results
 
-API.fetchTrendingMovies(1).then(response => console.log(response.data.results));
+// API.fetchTrendingMovies(1).then(response => console.log(response.data.results));
 
 // Запрос на массив жанров
 
-API.fetchGenres().then(response => console.log(response.data.genres));
+// API.fetchGenres().then(response => console.log(response.data.genres));
 
 // Запрос на фильм по ключевому слову
 
-API.fetchSearchByQuery('batman', 1).then(response =>
-  console.log(response.data.results)
-);
+// API.fetchSearchByQuery('batman', 1).then(response =>
+//   console.log(response.data.results)
+// );
 
 // "Это то, что нужно запихнуть в index.js"
 
