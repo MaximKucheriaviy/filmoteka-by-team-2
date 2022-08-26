@@ -1,8 +1,17 @@
 /* Header */
-
+.svg{
+    fill: transparent;
+    stroke: #ffffff;
+    stroke-width: 2px;
+}
 .header {
     display: flex;
     align-items: center;
+    background-image:
+            url(/src/images/hero-filmoteka.jpg);
+}
+.link {
+    text-decoration: none;
 }
 
 .header-nav {
@@ -12,16 +21,19 @@
 
 
 a.logo {
-    font-family: Roboto;
-    font-size: 30px;
+    margin-left:12px ;
+    font-family: 'Roboto';
     font-weight: 500;
+    font-size: 30px;
     line-height: 35px;
-    letter-spacing: 0em;
-    text-align: center;
 
     color: rgba(255, 255, 255, 1);
 }
-
+.list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
 .nav-list {
     display: flex;
     margin-left: auto;
@@ -76,7 +88,7 @@ a.logo {
 
 .input {
     border: none;
-
+    width: 380px;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
@@ -88,9 +100,9 @@ a.logo {
 }
 
 .input:focus {
-    border: medium none;
     border: none;
     background-color: transparent;
+    outline: none;
 }
 
 .input__btn {
@@ -104,3 +116,4 @@ a.logo {
     height: 216px;
     background-size: cover;
 }
+
