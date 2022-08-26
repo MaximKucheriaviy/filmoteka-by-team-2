@@ -1,10 +1,9 @@
-
 import infoFilm from "./js/film-info-modal"; 
-infoFilm();
-
 import API from "./js/api";
 import createMarcupGallery from "./js/createMarcupGallery";
 import PaginationSystem from "./js/paginationSyste";
+
+infoFilm();
 
 const paginationSystem = new PaginationSystem();
 paginationSystem.setTotalItems(1000);
