@@ -6,8 +6,8 @@ import PaginationSystem from "./js/paginationSyste";
 infoFilm();
 
 const paginationSystem = new PaginationSystem();
-paginationSystem.setTotalItems(1000);
-paginationSystem.setPage(9);
+
+
 
 const refs = {
     cardList: document.querySelector('[data-gallery]')
@@ -15,7 +15,19 @@ const refs = {
 
 API.fetchTrendingMovies(1)
 .then(response => {
-    console.log(response.data.results);
+    console.log(response.data);
+    refs.cardList.innerHTML =  createMarcupGallery(response.data.results);
+    paginationSystem.setTotalPages(response.data.total_pages);
+    paginationSystem.setPage(1);
+});
+
+paginationSystem.mainList.addEventListener("pagination-system-clicked", (event) => {
+    API.fetchTrendingMovies(paginationSystem.page)
+    .then(response => {
+    console.log(response.data);
     refs.cardList.innerHTML =  createMarcupGallery(response.data.results);
 });
+})
+
+
 
