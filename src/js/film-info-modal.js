@@ -4,12 +4,24 @@ export default function infoFilm() {
     closeModalBtn: document.querySelector("[data-modal-close]"),
     modal: document.querySelector("[data-modal]"),
    }
-   openModalBtn.addEventListener("click", toggleModal);
-   closeModalBtn.addEventListener("click", toggleModal);
+   refs.openModalBtn.addEventListener("click", onOpenModalBtnClick);
+   refs.closeModalBtn.addEventListener("click", oncloseModalBtnClick);
+   window.addEventListener("click", onWindowClick)
 
-   function toggleModal() {
-    refs.modal.classList.toggle("is-hidden");
-    console.log("Backdrop is hidden");
-  }
-
+  //  function toggleModal() {
+  //   refs.modal.classList.toggle("is-hidden");
+  //   console.log("Backdrop is hidden");
+  // }
+  
+   function onOpenModalBtnClick(){
+    refs.modal.style.display = "block"
+   }
+   function oncloseModalBtnClick() {
+   refs.modal.style.display = "none"
+   }
+   function onWindowClick(event) {
+    if(event.target === refs.modal) {
+      refs.modal.style.display = "none"
+    }
+   }
 }
