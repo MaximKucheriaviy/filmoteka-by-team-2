@@ -12,7 +12,7 @@ export default function infoFilm() {
   //   refs.modal.classList.toggle("is-hidden");
   //   console.log("Backdrop is hidden");
   // }
-  
+
    function onOpenModalBtnClick(){
     refs.modal.style.display = "block"
    }
