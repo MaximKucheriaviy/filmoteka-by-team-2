@@ -1,6 +1,6 @@
 export default createMarcupGallery = data =>
   data.reduce(
-    (acc, { poster_path, title, genre_ids, id, release_date }) =>
+    (acc, { poster_path, title, genre_ids, id, release_date = [] }) =>
       acc +
       `<li class="gallery__item">
       <button type="button" data-id="${id}">
