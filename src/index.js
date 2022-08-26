@@ -1,5 +1,10 @@
 import API from "./js/api";
 import createMarcupGallery from "./js/createMarcupGallery";
+import PaginationSystem from "./js/paginationSyste";
+
+const paginationSystem = new PaginationSystem();
+paginationSystem.setTotalItems(1000);
+paginationSystem.setPage(9);
 
 const refs = {
     cardList: document.querySelector('[data-gallery]')
