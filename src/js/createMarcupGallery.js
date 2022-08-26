@@ -3,7 +3,7 @@ export default createMarcupGallery = data =>
     (acc, { poster_path, title, genre_ids, id, release_date = [] }) =>
       acc +
       `<li class="gallery__item">
-      <button type="button" data-id="${id}">
+      <button type="button" data-id="${id}" data-click>
           <img src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="${title}" class="gallery__img" loading="lazy">
         </button>
            <p class="gallery__text gallery__text--red">

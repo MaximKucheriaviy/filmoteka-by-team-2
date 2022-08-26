@@ -34,20 +34,20 @@ class PaginationSystem{
             this.refs.arrowRight.style.display = "inline-block"
             
             if(this.countOfPages < 10){
-                for(let i = 1; i <= this.countOfPages; i++){
+                for(let i = 1; i <= this.countOfPages - 1; i++){
                     buttonArr[i].textContent = i;
                     buttonArr[i].style.display = "inline-block";
                 }
             }
             else{
                 if(this.page <= 7){
-                    for(let i = 1; i <= buttonArr.length - 1; i++){
+                    for(let i = 1; i <= buttonArr.length - 2; i++){
                         buttonArr[i].style.display = "inline-block";
-                        if(i === buttonArr.length - 2){
+                        if(i === buttonArr.length - 3){
                             buttonArr[i].textContent = "...";
                             continue;
                         }
-                        else if(i === buttonArr.length - 1){
+                        else if(i === buttonArr.length - 2){
                             buttonArr[i].textContent = this.countOfPages;
                             continue;
                         }
@@ -69,7 +69,18 @@ class PaginationSystem{
                     this.refs.btn9.textContent = this.countOfPages;
                 }
                 else if(this.page >= this.countOfPages - 6){
-
+                    for(let i = 1; i <= buttonArr.length - 1; i++){
+                        buttonArr[i].style.display = "inline-block";
+                    }
+                    this.refs.btn1.textContent = "1";
+                    this.refs.btn2.textContent = "...";
+                    this.refs.btn3.textContent = this.countOfPages - 6;
+                    this.refs.btn4.textContent = this.countOfPages - 5;
+                    this.refs.btn5.textContent = this.countOfPages - 4;
+                    this.refs.btn6.textContent = this.countOfPages - 3;
+                    this.refs.btn7.textContent = this.countOfPages - 2;
+                    this.refs.btn8.textContent = this.countOfPages - 1;
+                    this.refs.btn9.textContent = this.countOfPages;
                 }
             }
         }  
