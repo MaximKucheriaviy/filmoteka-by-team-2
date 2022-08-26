@@ -10,6 +10,12 @@
     background-image:
             url(/src/images/hero-filmoteka.jpg);
 }
+.mylibrary{
+    display: flex;
+    align-items: center;
+        background-image:
+            url(/src/images/header-bg.jpg);
+}
 .link {
     text-decoration: none;
 }
@@ -117,3 +123,46 @@ a.logo {
     background-size: cover;
 }
 
+.wrapper-btn{
+margin-top: 40px;
+display: flex;
+
+justify-content: center;
+} 
+
+.btn-watched{
+width: 148px;
+height: 42px;
+margin-right: 12px;
+
+font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+
+border: 1px solid #FFFFFF;
+border-radius: 5px;
+background:rgba(255, 107, 1, 1) ;
+}
+
+.btn-queue{
+width: 148px;
+height: 42px;
+
+font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+
+border: 1px solid #FFFFFF;
+border-radius: 5px;
+background: transparent;
+}
