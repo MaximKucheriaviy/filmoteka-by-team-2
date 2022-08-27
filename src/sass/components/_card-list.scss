@@ -1,5 +1,6 @@
 .gallery{
-    @include mq(mobile) {
+    @include mq(mobile-only) {
+     
      margin-top: 20px;
      margin-bottom: 40px;
      margin-right: 20px;
@@ -7,6 +8,7 @@
     }
     
     @include mq(tablet){
+    max-width: 768px;
     margin-top: 60px;
     margin-bottom: 60px;
     margin-right: 32px;
@@ -14,6 +16,7 @@
     }
 
     @include mq(desktop){
+    max-width: 1280px;
     margin-top: 60px;
     margin-bottom: 60px;
     margin-right: 32px;
@@ -22,14 +25,15 @@
 
 }
 
-.gallery-list{
-    display: flex;
-
-    @include mq(mobile){
+.gallery__list{
+    
+    @include mq(mobile-only){
     justify-content: center;
+    flex-wrap: wrap;
     }
 
-    @include mq(tablet){
+    @include mq(tablet-only){
+        display: flex;
      flex-wrap: wrap;
      column-gap: 32px;
      row-gap: 32px;
@@ -37,8 +41,49 @@
 
 
     @include mq(desktop){
+        display: flex;
     flex-wrap: wrap;
-    column-gap: 32px;
-    row-gap: 16px;
+    column-gap: 16px;
+    row-gap: 32px;
     }
+}
+
+.gallery__item{
+@include mq(mobile-only) {
+    width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@include mq(tablet) {
+width: 336px;
+margin-left: auto;
+margin-right: auto;
+}
+
+@include mq(desktop) {
+width: 394px;
+}
+}
+
+.gallery__button{
+    border: none;
+    background-color:transparent;
+}
+
+.gallery__img{
+@include mq(mobile-only) {
+    // width: 280px;
+    height: 398px;
+}
+
+@include mq(tablet) {
+    // width: 336px;
+    height: 455px;
+}
+
+@include mq(desktop){
+    // width: 394px;
+    height: 574px;
+}
 }

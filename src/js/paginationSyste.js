@@ -15,10 +15,17 @@ class PaginationSystem{
             btn9: document.querySelector('[data-pag-system="9"]'),
             arrowRight: document.querySelector('[data-pag-system="arow-right"]'),
         }
+        this.mainList = document.querySelector('[data-pagination-list]');
+        this.mainList.addEventListener('click', this.clickHendler.bind(this));
         this.renderButtons();
+
     }
     setTotalItems(number){
         this.countOfPages = Math.ceil(number / 20);console.log();
+        this.renderButtons();
+    }
+    setTotalPages(number){
+        this.countOfPages = number;
         this.renderButtons();
     }
     setPage(page){
@@ -40,40 +47,44 @@ class PaginationSystem{
                 }
             }
             else{
-                if(this.page <= 7){
+                if(this.page < 7){
                     for(let i = 1; i <= buttonArr.length - 2; i++){
                         buttonArr[i].style.display = "inline-block";
-                        if(i === buttonArr.length - 3){
-                            buttonArr[i].textContent = "...";
-                            continue;
-                        }
-                        else if(i === buttonArr.length - 2){
-                            buttonArr[i].textContent = this.countOfPages;
-                            continue;
-                        }
-                        buttonArr[i].textContent = i;
                     }
+                    this.refs.btn1.textContent = "1";
+                    this.refs.btn2.textContent = "2";
+                    this.refs.btn3.textContent = "3";
+                    this.refs.btn4.textContent = "4";
+                    this.refs.btn5.textContent = "5";
+                    this.refs.btn6.textContent = "6";
+                    this.refs.btn7.textContent = "7";
+                    this.refs.btn8.textContent = "...";
+                    this.refs.btn8.classList.remove("pagination-button__clicable");
+                    this.refs.btn9.textContent = this.countOfPages;
                 }
-                else if(this.page > 7 && this.page < this.countOfPages - 6){
+                else if(this.page >= 7 && this.page <= this.countOfPages - 6){
                     for(let i = 1; i <= buttonArr.length - 1; i++){
                         buttonArr[i].style.display = "inline-block";
                     }
                     this.refs.btn1.textContent = "1";
                     this.refs.btn2.textContent = "...";
+                    this.refs.btn2.classList.remove("pagination-button__clicable");
                     this.refs.btn3.textContent = this.page - 2;
                     this.refs.btn4.textContent = this.page - 1;
                     this.refs.btn5.textContent = this.page;
                     this.refs.btn6.textContent = this.page + 1;
                     this.refs.btn7.textContent = this.page + 2;
                     this.refs.btn8.textContent = "...";
+                    this.refs.btn8.classList.remove("pagination-button__clicable");
                     this.refs.btn9.textContent = this.countOfPages;
                 }
-                else if(this.page >= this.countOfPages - 6){
+                else if(this.page > this.countOfPages - 6){
                     for(let i = 1; i <= buttonArr.length - 1; i++){
                         buttonArr[i].style.display = "inline-block";
                     }
                     this.refs.btn1.textContent = "1";
                     this.refs.btn2.textContent = "...";
+                    this.refs.btn2.classList.remove("pagination-button__clicable");
                     this.refs.btn3.textContent = this.countOfPages - 6;
                     this.refs.btn4.textContent = this.countOfPages - 5;
                     this.refs.btn5.textContent = this.countOfPages - 4;
@@ -83,13 +94,30 @@ class PaginationSystem{
                     this.refs.btn9.textContent = this.countOfPages;
                 }
             }
+            buttonArr.find(item => Number.parseInt(item.textContent) === this.page).classList.add("pagination-button__checked");
         }  
     }
     hideSystem(){
         const buttonArr = Object.values(this.refs);
         buttonArr.forEach(item => {
             item.style.display = "none";
+            if(!item.classList.contains("pagination-button__clicable")){
+                item.classList.add("pagination-button__clicable");
+            }
+            if(item.classList.contains("pagination-button__checked")){
+                item.classList.remove("pagination-button__checked");
+            }
         })
+    }
+    clickHendler(event){
+        const eventNew = new Event("pagination-system-clicked");
+        const target = event.target;
+        if(target.classList.contains("pagination-button__clicable") && target.textContent !== "arr" && target.textContent !== "arl"){
+            this.setPage(Number.parseInt(target.textContent));
+        }
+        if(target.classList.contains("pagination-button__clicable")){
+            this.mainList.dispatchEvent(eventNew);
+        }
     }
 }
 
