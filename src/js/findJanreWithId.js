@@ -1,5 +1,5 @@
 export default findJanres = id => {
-  let janre = '';
+  let janre = null;
   switch (id) {
     case 10759:
       janre = 'Action & Adventure';
@@ -9,6 +9,7 @@ export default findJanres = id => {
       break;
     case 35:
       janre = 'Comedy';
+      break;
     case 80:
       janre = 'Crime';
       break;
@@ -33,7 +34,7 @@ export default findJanres = id => {
     case 10763:
       janre = 'News';
       break;
-    case id === 10764:
+    case 10764:
       janre = 'Reality';
       break;
     case 10765:
@@ -45,7 +46,7 @@ export default findJanres = id => {
     case 10767:
       janre = 'Talk';
       break;
-    case id === 28:
+    case 28:
       janre = 'Action';
       break;
     case 10768:
@@ -87,6 +88,8 @@ export default findJanres = id => {
     case 10752:
       janre = 'War';
       break;
+    default:
+      janre = 'не нашел id';
   }
   return janre;
 };
