@@ -1,33 +1,40 @@
 import infoFilm from "./js/film-info-modal"; 
 import API from "./js/api";
-import createMarcupGallery from "./js/createMarcupGallery";
+import {createMarcupGallery, createMarcupGalleryAlt} from "./js/createMarcupGallery";
 import PaginationSystem from "./js/paginationSyste";
 
 infoFilm();
 
 const paginationSystem = new PaginationSystem();
 
-
-
 const refs = {
     cardList: document.querySelector('[data-gallery]')
 }
 
+let genres;
+
 API.fetchTrendingMovies(1)
 .then(response => {
     console.log(response.data);
-    refs.cardList.innerHTML =  createMarcupGallery(response.data.results);
-    paginationSystem.setTotalPages(response.data.total_pages);
-    paginationSystem.setPage(1);
+    API.fetchGenres()
+        .then((responseGenders) => {
+            genres = responseGenders.data.genres;
+            console.log(genres);
+            refs.cardList.innerHTML =  createMarcupGallery(response.data.results);
+            paginationSystem.setTotalPages(response.data.total_pages);
+            paginationSystem.setPage(1);
+        })
 });
 
 paginationSystem.mainList.addEventListener("pagination-system-clicked", (event) => {
     API.fetchTrendingMovies(paginationSystem.page)
     .then(response => {
-    console.log(response.data);
-    refs.cardList.innerHTML =  createMarcupGallery(response.data.results);
+    refs.cardList.innerHTML = "";
+    refs.cardList.append(...createMarcupGalleryAlt(response.data.results));
 });
 })
+
+
 
 
 
