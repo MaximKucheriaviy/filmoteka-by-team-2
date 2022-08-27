@@ -1,10 +1,19 @@
+import findJanres from './findJanreWithId';
+console.log(findJanres);
 export default createMarcupGallery = (data, flag) => {
   localStorage.setItem('reneredCards', JSON.stringify(data));
   if (flag) {
     return data.reduce(
       (
         acc,
-        { poster_path, title, genre_ids, id, release_date = [], vote_average }
+        {
+          poster_path,
+          title,
+          genre_ids,
+          id = [],
+          release_date = [],
+          vote_average,
+        }
       ) =>
         acc +
         `<li class="gallery__item">
@@ -13,7 +22,9 @@ export default createMarcupGallery = (data, flag) => {
         </button>
            <p class =" gallery__text">
              <span class="gallery__text-title">${title}</span> </br>
-              ${genre_ids} | ${release_date.slice(0, 4)}
+              ${genre_ids.map(element =>
+                findJanres(element)
+              )} | ${release_date.slice(0, 4)}
               <span class = "gallery__text-range">${vote_average}</span>
              </p>
         </li>`,
@@ -29,7 +40,9 @@ export default createMarcupGallery = (data, flag) => {
         </button>
            <p class =" gallery__text">
              <span class="gallery__text-title">${title}</span> </br>
-              ${genre_ids} | ${release_date.slice(0, 4)}
+              ${genre_ids.map(element =>
+                findJanres(element)
+              )} | ${release_date.slice(0, 4)}
              </p>
         </li>`,
     ''
@@ -61,7 +74,7 @@ export default createMarcupGallery = (data, flag) => {
 //       //наполнение контентом карточки ,классы добавлю позже
 //       imgInButtonEl.src = `https://image.tmdb.org/t/p/w500/${poster_path}`;
 //       imgInButtonEl.alt = `${title}`;
-//       pInGallaryEl.textContent = `${genre_ids} | ${release_date.slice(0, 4)}`;
+//       pInGallaryEl.textContent = `${genre_ids.map(element =>  findJanres(element))} | ${release_date.slice(0, 4)}`;
 //       spanTextInGallaryEl.textContent = `${title}`;
 //       imgInButtonEl.setAttribute('loading', 'lazy');
 //       buttonInGallaryEl.dataset.id = `${id}`;
