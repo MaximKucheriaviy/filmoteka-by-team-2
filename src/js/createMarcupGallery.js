@@ -10,21 +10,25 @@ export default createMarcupGallery = (data, flag) => {
           poster_path,
           title,
           genre_ids,
-          id = [],
-          release_date = [],
+          id,
+          release_date,
           vote_average,
+          name,
+          first_air_date,
         }
       ) =>
         acc +
         `<li class="gallery__item">
       <button type="button" data-id="${id}" data-click class ="gallery__button">
-          <img src="https://image.tmdb.org/t/p/w500/${poster_path}"  alt="${title}" class ="gallery__img"  loading="lazy">
+          <img src="https://image.tmdb.org/t/p/w500/${poster_path}"  alt="${
+          title || name
+        }" class ="gallery__img"  loading="lazy">
         </button>
            <p class =" gallery__text">
-             <span class="gallery__text-title">${title}</span> </br>
-              ${genre_ids.map(element =>
-                findJanres(element)
-              )} | ${release_date.slice(0, 4)}
+             <span class="gallery__text-title">${title || name}</span> </br>
+              ${genre_ids.map(element => findJanres(element))} | ${(
+          release_date || first_air_date
+        ).slice(0, 4)}
               <span class = "gallery__text-range">${vote_average}</span>
              </p>
         </li>`,
@@ -32,17 +36,22 @@ export default createMarcupGallery = (data, flag) => {
     );
   }
   return data.reduce(
-    (acc, { poster_path, title, genre_ids, id, release_date = [] }) =>
+    (
+      acc,
+      { poster_path, title, genre_ids, id, release_date, name, first_air_date }
+    ) =>
       acc +
       `<li class="gallery__item">
       <button type="button" data-id="${id}" data-click class ="gallery__button">
-          <img src="https://image.tmdb.org/t/p/w500/${poster_path}"  alt="${title}" class ="gallery__img"  loading ="lazy">
+          <img src="https://image.tmdb.org/t/p/w500/${poster_path}"  alt="${
+        title || name
+      }" class ="gallery__img"  loading ="lazy">
         </button>
            <p class =" gallery__text">
-             <span class="gallery__text-title">${title}</span> </br>
-              ${genre_ids.map(element =>
-                findJanres(element)
-              )} | ${release_date.slice(0, 4)}
+             <span class="gallery__text-title">${title || name}</span> </br>
+              ${genre_ids.map(element => findJanres(element))} | ${(
+        release_date || first_air_date
+      ).slice(0, 4)}
              </p>
         </li>`,
     ''
@@ -60,7 +69,8 @@ export default createMarcupGallery = (data, flag) => {
 //       title,
 //       genre_ids,
 //       id,
-//       release_date = [],
+//       release_date ,
+//       first_air_date;
 //       vote_average,
 //     }) => {
 //       // ссылки на каждый элемент ,если нужно будет ,то все в один объект потом впихну,ну и название тоже изменю,если надо будет
@@ -74,7 +84,7 @@ export default createMarcupGallery = (data, flag) => {
 //       //наполнение контентом карточки ,классы добавлю позже
 //       imgInButtonEl.src = `https://image.tmdb.org/t/p/w500/${poster_path}`;
 //       imgInButtonEl.alt = `${title}`;
-//       pInGallaryEl.textContent = `${genre_ids.map(element =>  findJanres(element))} | ${release_date.slice(0, 4)}`;
+//       pInGallaryEl.textContent = `${genre_ids.map(element =>  findJanres(element))} | ${( release_date || first_air_date).slice(0, 4)}`;
 //       spanTextInGallaryEl.textContent = `${title}`;
 //       imgInButtonEl.setAttribute('loading', 'lazy');
 //       buttonInGallaryEl.dataset.id = `${id}`;

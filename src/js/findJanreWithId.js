@@ -1,5 +1,4 @@
 export default findJanres = id => {
-  console.log('jfhfff');
   let janre = '';
   switch (id) {
     case 10759:
