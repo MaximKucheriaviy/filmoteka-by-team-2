@@ -26,7 +26,7 @@ export default createMarcupGallery = (data, flag) => {
   return data.reduce(
     (acc, { poster_path, title, genre_ids, id, release_date = [] }) =>
       acc +
-      `<li >
+      `<li>
       <button type="button" data-id="${id}" data-click>
           <img src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="${title}"  loading="lazy">
         </button>
