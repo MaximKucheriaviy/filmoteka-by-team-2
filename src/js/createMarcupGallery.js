@@ -70,6 +70,7 @@ const createMarcupGalleryAlt = (data, flag) => {
       title,
       genre_ids,
       id,
+      name,
       release_date,
       first_air_date,
       vote_average,
@@ -84,11 +85,11 @@ const createMarcupGalleryAlt = (data, flag) => {
 
       //наполнение контентом карточки ,классы добавлю позже
       imgInButtonEl.src = `https://image.tmdb.org/t/p/w500/${poster_path}`;
-      imgInButtonEl.alt = `${title}`;
+      imgInButtonEl.alt = `${title || name}`;
       pInGallaryEl.textContent = `${genre_ids.map(element =>
         findJanres(element)
       )} | ${(release_date || first_air_date).slice(0, 4)}`;
-      spanTextInGallaryEl.textContent = `${title}`;
+      spanTextInGallaryEl.textContent = `${title || name}`;
       imgInButtonEl.setAttribute('loading', 'lazy');
       buttonInGallaryEl.dataset.id = `${id}`;
       buttonInGallaryEl.dataset.click = '';
@@ -123,4 +124,3 @@ export { createMarcupGalleryAlt, createMarcupGallery };
 
 //  использовать что бы вставть в галерею , флаг true нужен для того что бы ранг показывть,лучше вынести его в одельную переменную
 // refs.cardList.append(...createMarcupGallery(response.data.results, true));
-
