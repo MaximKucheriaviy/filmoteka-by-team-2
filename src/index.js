@@ -2,7 +2,6 @@ import infoFilm from "./js/film-info-modal";
 import API from "./js/api";
 import {createMarcupGallery, createMarcupGalleryAlt} from "./js/createMarcupGallery";
 import PaginationSystem from "./js/paginationSyste";
-
 infoFilm();
 
 const paginationSystem = new PaginationSystem();
@@ -11,19 +10,13 @@ const refs = {
     cardList: document.querySelector('[data-gallery]')
 }
 
-let genres;
 
 API.fetchTrendingMovies(1)
 .then(response => {
     console.log(response.data);
-    API.fetchGenres()
-        .then((responseGenders) => {
-            genres = responseGenders.data.genres;
-            console.log(genres);
-            refs.cardList.innerHTML =  createMarcupGallery(response.data.results);
-            paginationSystem.setTotalPages(response.data.total_pages);
-            paginationSystem.setPage(1);
-        })
+    refs.cardList.innerHTML =  createMarcupGallery(response.data.results);
+    paginationSystem.setTotalPages(response.data.total_pages);
+    paginationSystem.setPage(1);
 });
 
 paginationSystem.mainList.addEventListener("pagination-system-clicked", (event) => {
