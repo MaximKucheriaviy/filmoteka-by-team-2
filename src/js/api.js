@@ -29,16 +29,16 @@ export default class API {
   static BASE_URL_GENRES = 'https://api.themoviedb.org/3/genre/movie/list';
   static BASE_URL_SEARCH = 'https://api.themoviedb.org/3/search/movie';
 
-  static async fetchTrendingMovies(page) {
-    try {
-      const data = axios.get(this.BASE_URL_TRENDING, {
-        params: { api_key: this.API_KEY, page },
-      });
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // static async fetchTrendingMovies(page) {
+  //   try {
+  //     const data = axios.get(this.BASE_URL_TRENDING, {
+  //       params: { api_key: this.API_KEY, page },
+  //     });
+  //     return data;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   static async fetchGenres() {
     try {
@@ -51,10 +51,23 @@ export default class API {
     }
   }
 
-  static async fetchSearchByQuery(query, page) {
+  static async fetchSearchByQuery(query, page, callback = () => {}) {
     try {
+      callback();
       const data = axios.get(this.BASE_URL_SEARCH, {
         params: { api_key: this.API_KEY, query, page },
+      });
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  static async fetchTrendingMovies(page, callback = () => {}) {
+    try {
+      callback();
+      const data = axios.get(this.BASE_URL_TRENDING, {
+        params: { api_key: this.API_KEY, page },
       });
       return data;
     } catch (error) {
