@@ -41,6 +41,7 @@ const createMarcupGallery = (data, flag) => {
     ) =>
       acc +
       `<li class="gallery__item">
+
       <button type="button" data-id="${id}" data-click class ="gallery__button">
           <img src="https://image.tmdb.org/t/p/w500/${poster_path}"  alt="${
         title || name
@@ -52,6 +53,7 @@ const createMarcupGallery = (data, flag) => {
         release_date || first_air_date
       ).slice(0, 4)}
              </p>
+
         </li>`,
     ''
   );
