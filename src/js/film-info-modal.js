@@ -13,25 +13,24 @@ export default function infoFilm() {
     }
   });
 
-  //  function onOpenModalBtnClick(){
-  //     refs.modal.style.display = "block"
-  //  }
-  //  function oncloseModalBtnClick() {
-  //  refs.modal.style.display = "none"
-  //  }
-  //  function onWindowClick(event) {
-  //   if(event.target === refs.modal) {
-  //     refs.modal.style.display = "none"
-  //   }
-  //  }
+   function onOpenModalBtnClick(){
+      refs.modal.style.display = "block"
+   }
+   function oncloseModalBtnClick() {
+   refs.modal.style.display = "none"
+   }
+   function onWindowClick(event) {
+    if(event.target === refs.modal) {
+      refs.modal.style.display = "none"
+    }
+   }
 
   // function onCardFilmClick(id, isFilm) {
   //   if(isFilm) {
   //     let localStorageData = [...JSON.parse(localStorage.getItem("[data-gallery]"))];
-  //     selectFilm = localStorageData.find(el => el.id === id);
-  //   } else {
-  //     selectFilm = renderCards.find(el => el.id === id);
-  //   }
-  //   showDetails(selectFilm);
+      
+  //   } 
+  //   console.log(localStorageData);
   // }
+  
 } 

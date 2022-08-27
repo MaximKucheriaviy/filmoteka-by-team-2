@@ -5,11 +5,11 @@ export default createMarcupGallery = data =>
       `<li class="gallery__item">
       <button type="button" data-id="${id}" data-click>
           <img src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="${title}" class="gallery__img" loading="lazy">
-        </button>
+      </button>
            <p class="gallery__text gallery__text--red">
              <span class="gallery__text--black">${title}</span> </br>
               ${genre_ids} | ${release_date.slice(0, 4)}
-             </p> 
+          </p> 
         </li>`,
     ''
   );
