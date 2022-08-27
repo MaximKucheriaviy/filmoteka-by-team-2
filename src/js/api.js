@@ -29,14 +29,27 @@ export default class API {
   static BASE_URL_GENRES = 'https://api.themoviedb.org/3/genre/movie/list';
   static BASE_URL_SEARCH = 'https://api.themoviedb.org/3/search/movie';
 
-  // static async fetchTrendingMovies(page) {
-  //   try {
-  //     const data = axios.get(this.BASE_URL_TRENDING, {
-  //       params: { api_key: this.API_KEY, page },
-  //     });
-  //     return data;
-  //   } catch (error) {
-  //     console.log(error);
+  static async fetchTrendingMovies(page) {
+    try {
+      const data = axios.get(this.BASE_URL_TRENDING, {
+        params: { api_key: this.API_KEY, page },
+      });
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  // ИЛИ ТАК ДЛЯ НАШЕГО СКРИНЛОАДЕРА
+  //   static async fetchTrendingMovies(page, callback = () => {}) {
+  //     try {
+  //       callback();
+  //       const data = axios.get(this.BASE_URL_TRENDING, {
+  //         params: { api_key: this.API_KEY, page },
+  //       });
+  //       return data;
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
   //   }
   // }
 
@@ -51,9 +64,8 @@ export default class API {
     }
   }
 
-  static async fetchSearchByQuery(query, page, callback = () => {}) {
+  static async fetchSearchByQuery(query, page) {
     try {
-      callback();
       const data = axios.get(this.BASE_URL_SEARCH, {
         params: { api_key: this.API_KEY, query, page },
       });
@@ -63,15 +75,16 @@ export default class API {
     }
   }
 
-  static async fetchTrendingMovies(page, callback = () => {}) {
-    try {
-      callback();
-      const data = axios.get(this.BASE_URL_TRENDING, {
-        params: { api_key: this.API_KEY, page },
-      });
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // ИЛИ ТАК ДЛЯ НАШЕГО СКРИНЛОАДЕРА
+  // static async fetchSearchByQuery(query, page, callback = () => {}) {
+  //   try {
+  //     callback();
+  //     const data = axios.get(this.BASE_URL_SEARCH, {
+  //       params: { api_key: this.API_KEY, query, page },
+  //     });
+  //     return data;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 }
