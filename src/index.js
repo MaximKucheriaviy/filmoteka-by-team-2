@@ -1,8 +1,13 @@
-import infoFilm from "./js/film-info-modal"; 
+import onLoad from "./js/screenloader"
+import infoFilm from "./js/film-info-modal";
 import API from "./js/api";
 import {createMarcupGallery, createMarcupGalleryAlt} from "./js/createMarcupGallery";
 import PaginationSystem from "./js/paginationSyste";
 infoFilm();
+
+
+
+
 
 const paginationSystem = new PaginationSystem();
 
