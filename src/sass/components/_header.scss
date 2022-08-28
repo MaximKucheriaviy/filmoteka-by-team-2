@@ -4,18 +4,59 @@
     stroke: #ffffff;
     stroke-width: 2px;
 }
+// body{
+//     background-color: rgba(0, 0, 0, 0.87);
+//     color: #FF6B08;
+// }
 .header {
     display: flex;
-    align-items: center;
+}
+.container-main {
+    width: 1380px;
+    height: 216px;
+    padding-top: 40px;
+    padding-left: 32px;
+    padding-right: 32px;
+    background-size: cover;
+
     background-image:
             url(/src/images/hero-filmoteka.jpg);
+    
+    @include mq(tablet-only) {
+        background-image: url(/src/images/background1-tablet.jpg);
+        opacity: 0.9;
+        }
+    
+    @include mq(mobile-only) {
+        background-image: url(/src/images/background1-mobile.jpg);
+    }
 }
-.mylibrary{
-    display: flex;
-    align-items: center;
-        background-image:
-            url(/src/images/header-bg.jpg);
+
+
+.container-mylibrary{
+    width: 1380px;
+    height: 216px;
+    padding-top: 40px;
+    padding-left: 32px;
+    padding-right: 32px;
+    background-size: cover;
+
+    background-image:
+        url(/src/images/header-bg.jpg);
+
+    @include mq(tablet-only) {
+        height: 219px;
+        background-ima1ge: url(/src/images/background2-tablet.jpg);
+        background-size: cover;
+        opacity: 0.9;
+    }
+    @include mq(mobile-only) {
+        height: 230px;
+        background-image: url(/src/images/background2-mobile.jpg);
+        background-size: cover;
+    }
 }
+
 .link {
     text-decoration: none;
 }
@@ -34,6 +75,10 @@ a.logo {
     line-height: 35px;
 
     color: rgba(255, 255, 255, 1);
+
+    @include mq(mobile-only){
+        display: none;
+    }
 }
 .list {
     padding: 0;
@@ -86,10 +131,14 @@ a.logo {
     margin-top: 41px;
     margin-left: auto;
     margin-right: auto;
-    width: 394px;
+    max-width: 394px;
     display: flex;
     justify-content: space-between;
     border-bottom: 0.5px solid rgba(255, 255, 255, 1);
+
+    @include mq(tablet-only){
+        max-width: 336px;
+    }
 }
 
 .input {
@@ -117,16 +166,11 @@ a.logo {
     background: transparent;
 }
 
-.filmoteka__header {
-    width: auto;
-    height: 216px;
-    background-size: cover;
-}
+
 
 .wrapper-btn{
-margin-top: 40px;
+margin-top: 41px;
 display: flex;
-
 justify-content: center;
 } 
 
