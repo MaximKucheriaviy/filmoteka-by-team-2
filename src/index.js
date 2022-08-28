@@ -3,7 +3,8 @@ import API from "./js/api";
 import {createMarcupGallery, createMarcupGalleryAlt} from "./js/createMarcupGallery";
 import PaginationSystem from "./js/paginationSyste";
 infoFilm();
-
+import meaningForm from "./js/meaningForm";
+meaningForm ()
 const paginationSystem = new PaginationSystem();
 
 const refs = {
