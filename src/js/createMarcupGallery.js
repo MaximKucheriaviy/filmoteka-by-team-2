@@ -25,7 +25,7 @@ const createMarcupGallery = (data, flag) => {
         </button>
            <p class =" gallery__text">
              <span class="gallery__text-title">${title || name}</span> </br>
-              ${genre_ids.map(element => findJanres(element))} | ${(
+              ${renderGenres(genre_ids)} | ${(
           release_date || first_air_date
         ).slice(0, 4)}
               <span class = "gallery__text-range">${vote_average}</span>
@@ -49,7 +49,7 @@ const createMarcupGallery = (data, flag) => {
         </button>
            <p class =" gallery__text">
              <span class="gallery__text-title">${title || name}</span> </br>
-              ${genre_ids.map(element => findJanres(element))} | ${(
+              ${renderGenres(genre_ids)} | ${(
         release_date || first_air_date
       ).slice(0, 4)}
              </p>
@@ -66,6 +66,7 @@ const createMarcupGalleryAlt = (data, flag) => {
 
   return data.map(
     ({
+      base_url_post = 'https://image.tmdb.org/t/p/w500/',
       poster_path,
       title,
       genre_ids,
@@ -84,11 +85,11 @@ const createMarcupGalleryAlt = (data, flag) => {
       const spanTextInGallaryEl = document.createElement('span');
 
       //наполнение контентом карточки ,классы добавлю позже
-      imgInButtonEl.src = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+      imgInButtonEl.src = `${CaptchaPosterPath(base_url_post, poster_path)}`;
       imgInButtonEl.alt = `${title || name}`;
-      pInGallaryEl.textContent = `${genre_ids.map(element =>
-        findJanres(element)
-      )} | ${(release_date || first_air_date).slice(0, 4)}`;
+      pInGallaryEl.textContent = `${renderGenres(genre_ids)} | ${(
+        release_date || first_air_date
+      ).slice(0, 4)}`;
       spanTextInGallaryEl.textContent = `${title || name}`;
       imgInButtonEl.setAttribute('loading', 'lazy');
       buttonInGallaryEl.dataset.id = `${id}`;
@@ -120,7 +121,24 @@ const createMarcupGalleryAlt = (data, flag) => {
   );
 };
 
+function renderGenres(array) {
+  if (!array.length) {
+    return 'Unknown';
+  }
+  return array.map(findJanres);
+}
+
+function CaptchaPosterPath(base_url, url_patch) {
+  if (url_patch === null) {
+    return 'https://www.themoviedb.org/assets/2/apple-touch-icon-cfba7699efe7a742de25c28e08c38525f19381d31087c69e89d6bcb8e3c0ddfa.png';
+  }
+  return `${base_url}${url_patch}`;
+}
+
 export { createMarcupGalleryAlt, createMarcupGallery };
 
 //  использовать что бы вставть в галерею , флаг true нужен для того что бы ранг показывть,лучше вынести его в одельную переменную
 // refs.cardList.append(...createMarcupGallery(response.data.results, true));
+
+// https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
+// https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
