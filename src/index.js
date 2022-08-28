@@ -15,7 +15,7 @@ const refs = {
 
 API.fetchTrendingMovies(1).then(response => {
   console.log(response.data);
-  refs.cardList.innerHTML = createMarcupGallery(response.data.results, true);
+  refs.cardList.innerHTML = createMarcupGallery(response.data.results);
   paginationSystem.setTotalPages(response.data.total_pages);
   paginationSystem.setPage(1);
 });
@@ -25,9 +25,7 @@ paginationSystem.mainList.addEventListener(
   event => {
     API.fetchTrendingMovies(paginationSystem.page).then(response => {
       refs.cardList.innerHTML = '';
-      refs.cardList.append(
-        ...createMarcupGalleryAlt(response.data.results, true)
-      );
+      refs.cardList.append(...createMarcupGalleryAlt(response.data.results));
     });
   }
 );
