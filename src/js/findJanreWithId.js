@@ -1,4 +1,4 @@
-export default findJanres = (id = '') => {
+export default findJanres = id => {
   let janre = null;
   switch (id) {
     case 10759:
@@ -94,6 +94,5 @@ export default findJanres = (id = '') => {
     default:
       janre = 'Unknown';
   }
-
   return janre;
 };
