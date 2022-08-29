@@ -60,7 +60,6 @@ const createMarcupGallery = (data, flag) => {
 const createMarcupGalleryAlt = (data, flag) => {
   // вносим объект как строку в LocalStorage
   localStorage.setItem('reneredCards', JSON.stringify(data));
-  console.log(flag);
 
   return data.map(
     ({
