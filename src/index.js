@@ -5,6 +5,9 @@ import {
   createMarcupGalleryAlt,
 } from './js/createMarcupGallery';
 import PaginationSystem from './js/paginationSyste';
+import onLoad from './js/screenloader';
+
+onLoad()
 infoFilm();
 
 const paginationSystem = new PaginationSystem();
