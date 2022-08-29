@@ -4,18 +4,64 @@
     stroke: #ffffff;
     stroke-width: 2px;
 }
+
 .header {
-    display: flex;
-    align-items: center;
-    background-image:
-            url(/src/images/hero-filmoteka.jpg);
-}
-.mylibrary{
-    display: flex;
-    align-items: center;
+   max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    
+    
         background-image:
-            url(/src/images/header-bg.jpg);
+            url(/src/images/hero-filmoteka.jpg);
+    
+        @include mq(tablet-only) {
+            background-image: url(/src/images/background1-tablet.jpg);
+        }
+    
+        @include mq(mobile-only) {
+            background-image: url(/src/images/background1-mobile.jpg);
+        }
 }
+.header-container {
+    max-width: 1280px;
+    height: 216px;
+    padding-top: 40px;
+    padding-left: 32px;
+    padding-right: 32px;
+    
+}
+
+
+.header-library{
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    background-image:
+        url(/src/images/header-bg.jpg);
+
+    @include mq(tablet-only) {
+        height: 219px;
+        background-ima1ge: url(/src/images/background2-tablet.jpg);
+    
+    
+    }
+    @include mq(mobile-only) {
+        height: 230px;
+        background-image: url(/src/images/background2-mobile.jpg);
+        
+    }
+}
+
 .link {
     text-decoration: none;
 }
@@ -34,6 +80,10 @@ a.logo {
     line-height: 35px;
 
     color: rgba(255, 255, 255, 1);
+
+    @include mq(mobile-only){
+        display: none;
+    }
 }
 .list {
     padding: 0;
@@ -86,10 +136,14 @@ a.logo {
     margin-top: 41px;
     margin-left: auto;
     margin-right: auto;
-    width: 394px;
+    max-width: 394px;
     display: flex;
     justify-content: space-between;
     border-bottom: 0.5px solid rgba(255, 255, 255, 1);
+
+    @include mq(tablet-only){
+        max-width: 336px;
+    }
 }
 
 .input {
@@ -117,16 +171,29 @@ a.logo {
     background: transparent;
 }
 
-.filmoteka__header {
-    width: auto;
-    height: 216px;
-    background-size: cover;
+.message{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+
+
+    color: #FF001B;
+
 }
 
-.wrapper-btn{
-margin-top: 40px;
-display: flex;
+.ishidden {
+    display: none;
+}
 
+
+.wrapper-btn{
+margin-top: 41px;
+display: flex;
 justify-content: center;
 } 
 
