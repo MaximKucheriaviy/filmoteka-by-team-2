@@ -15,13 +15,10 @@ export default function infoFilm() {
   });
 
    function onOpenModalBtnClick(e){
-    refs.modal.style.display = "block"
-    // e.preventDefault();
-    // const IsFilmCard = e.target.classList.contains(".gallery-button");
-    // if (IsFilmCard) {
-    //   refs.modal.style.display = "block"
-    //   console.log("клик на кнопку",refs.galleryEl);
-    // } 
+    const target = e.target.closest('[data-click]');
+    if(target){
+      refs.modal.style.display = "block";
+    }
   }
    function oncloseModalBtnClick() {
    refs.modal.style.display = "none"
