@@ -36,8 +36,40 @@ class PaginationSystem{
         this.hideSystem();
         if(this.countOfPages > 1){
             const buttonArr = Object.values(this.refs);
-
-            this.refs.arrowLeft.style.display = "inline-block"
+            if(window.innerWidth >= 1280){
+                this.renderOnDesctop(buttonArr);
+            }
+            else{
+                this.renderOnMobile(buttonArr);
+            }
+            
+            buttonArr.find(item => Number.parseInt(item.textContent) === this.page).classList.add("pagination-button__checked");
+        }  
+    }
+    hideSystem(){
+        const buttonArr = Object.values(this.refs);
+        buttonArr.forEach(item => {
+            item.style.display = "none";
+            if(!item.classList.contains("pagination-button__clicable")){
+                item.classList.add("pagination-button__clicable");
+            }
+            if(item.classList.contains("pagination-button__checked")){
+                item.classList.remove("pagination-button__checked");
+            }
+        })
+    }
+    clickHendler(event){
+        const eventNew = new Event("pagination-system-clicked");
+        const target = event.target;
+        if(target.classList.contains("pagination-button__clicable") && target.textContent !== "arr" && target.textContent !== "arl"){
+            this.setPage(Number.parseInt(target.textContent));
+        }
+        if(target.classList.contains("pagination-button__clicable")){
+            this.mainList.dispatchEvent(eventNew);
+        }
+    }
+    renderOnDesctop(buttonArr){
+        this.refs.arrowLeft.style.display = "inline-block"
             this.refs.arrowRight.style.display = "inline-block"
             
             if(this.countOfPages < 10){
@@ -94,30 +126,51 @@ class PaginationSystem{
                     this.refs.btn9.textContent = this.countOfPages;
                 }
             }
-            buttonArr.find(item => Number.parseInt(item.textContent) === this.page).classList.add("pagination-button__checked");
-        }  
     }
-    hideSystem(){
-        const buttonArr = Object.values(this.refs);
-        buttonArr.forEach(item => {
-            item.style.display = "none";
-            if(!item.classList.contains("pagination-button__clicable")){
-                item.classList.add("pagination-button__clicable");
+    renderOnMobile(buttonArr){
+        this.refs.arrowLeft.style.display = "inline-block"
+            this.refs.arrowRight.style.display = "inline-block"
+            
+            if(this.countOfPages < 5){
+                for(let i = 1; i <= this.countOfPages - 1; i++){
+                    buttonArr[i].textContent = i;
+                    buttonArr[i].style.display = "inline-block";
+                }
             }
-            if(item.classList.contains("pagination-button__checked")){
-                item.classList.remove("pagination-button__checked");
+            else{
+                if(this.page < 5){
+                    for(let i = 1; i <= 5; i++){
+                        buttonArr[i].style.display = "inline-block";
+                    }
+                    this.refs.btn1.textContent = "1";
+                    this.refs.btn2.textContent = "2";
+                    this.refs.btn3.textContent = "3";
+                    this.refs.btn4.textContent = "4";
+                    this.refs.btn5.textContent = "5";
+  
+                }
+                else if(this.page >= 5 && this.page <= this.countOfPages - 4){
+                    for(let i = 1; i <= 5; i++){
+                        buttonArr[i].style.display = "inline-block";
+                    }
+                    this.refs.btn1.textContent = this.page - 2;
+                    this.refs.btn2.textContent = this.page - 1;
+                    this.refs.btn3.textContent = this.page;
+                    this.refs.btn4.textContent = this.page + 1;
+                    this.refs.btn5.textContent = this.page + 2;
+                }
+                else if(this.page > this.countOfPages - 4){
+                    for(let i = 1; i <= 5; i++){
+                        buttonArr[i].style.display = "inline-block";
+                    }
+
+                    this.refs.btn1.textContent = this.countOfPages - 4;
+                    this.refs.btn2.textContent = this.countOfPages - 3;
+                    this.refs.btn3.textContent = this.countOfPages - 2;
+                    this.refs.btn4.textContent = this.countOfPages - 1;
+                    this.refs.btn5.textContent = this.countOfPages;
+                }
             }
-        })
-    }
-    clickHendler(event){
-        const eventNew = new Event("pagination-system-clicked");
-        const target = event.target;
-        if(target.classList.contains("pagination-button__clicable") && target.textContent !== "arr" && target.textContent !== "arl"){
-            this.setPage(Number.parseInt(target.textContent));
-        }
-        if(target.classList.contains("pagination-button__clicable")){
-            this.mainList.dispatchEvent(eventNew);
-        }
     }
 }
 
