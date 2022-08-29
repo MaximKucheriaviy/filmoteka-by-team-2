@@ -91,8 +91,6 @@ export default findJanres = id => {
     case null:
       janre = 'War';
       break;
-    default:
-      janre = 'Unknown';
   }
   return janre;
 };

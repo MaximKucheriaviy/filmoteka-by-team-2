@@ -57,7 +57,6 @@ const createMarcupGallery = (data, flag) => {
     ''
   );
 };
-
 const createMarcupGalleryAlt = (data, flag) => {
   // вносим объект как строку в LocalStorage
   localStorage.setItem('reneredCards', JSON.stringify(data));
@@ -124,11 +123,21 @@ const createMarcupGalleryAlt = (data, flag) => {
 };
 
 function renderGenres(array = []) {
-  console.log('vasg', array);
   if (!array.length) {
-    return 'Unknown';
+    return 'Other';
   }
-  return array.map(element => findJanres(element));
+
+  const janresArr = [];
+
+  for (let i = 0; i <= array.length; i += 1) {
+    if (i === 2) {
+      janresArr[i] = 'Other';
+      break;
+    }
+    janresArr.push(findJanres(array[i]));
+  }
+
+  return janresArr;
 }
 
 function CaptchaPosterPath(base_url, url_patch) {
@@ -142,6 +151,3 @@ export { createMarcupGalleryAlt, createMarcupGallery };
 
 //  использовать что бы вставть в галерею , флаг true нужен для того что бы ранг показывть,лучше вынести его в одельную переменную
 // refs.cardList.append(...createMarcupGallery(response.data.results, true));
-
-// https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
-// https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
