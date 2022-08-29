@@ -1,26 +1,3 @@
-// "Это то, что нужно запихнуть в index.js"
-
-// import API from './js/API';
-
-// Запрос на первую страницу (page=1) популярных фильмов при первой загрузке страницы
-// В ответ получаем массив обьектов response.data.results
-
-// API.fetchTrendingMovies(1).then(response => console.log(response.data.results));
-
-// Запрос на массив жанров
-
-// API.fetchGenres().then(response => console.log(response.data.genres));
-
-// Запрос на фильм по ключевому слову
-
-// API.fetchSearchByQuery('batman', 1).then(response =>
-//   console.log(response.data.results)
-// );
-
-// "Это то, что нужно запихнуть в index.js"
-
-// А это то, что останется здесь
-
 import axios from 'axios';
 
 export default class API {
@@ -29,11 +6,16 @@ export default class API {
   static BASE_URL_GENRES = 'https://api.themoviedb.org/3/genre/movie/list';
   static BASE_URL_SEARCH = 'https://api.themoviedb.org/3/search/movie';
 
+  // static LAST_URL = '';
+
   static async fetchTrendingMovies(page) {
     try {
-      const data = axios.get(this.BASE_URL_TRENDING, {
+      const data = await axios.get(this.BASE_URL_TRENDING, {
         params: { api_key: this.API_KEY, page },
       });
+      // this.saveLastUrl(
+      //   `${this.BASE_URL_TRENDING}?api_key=${this.API_KEY}&page=${page}`
+      // );
       return data;
     } catch (error) {
       console.log(error);
@@ -42,7 +24,7 @@ export default class API {
 
   static async fetchGenres() {
     try {
-      const data = axios.get(this.BASE_URL_GENRES, {
+      const data = await axios.get(this.BASE_URL_GENRES, {
         params: { api_key: this.API_KEY },
       });
       return data;
@@ -53,12 +35,43 @@ export default class API {
 
   static async fetchSearchByQuery(query, page) {
     try {
-      const data = axios.get(this.BASE_URL_SEARCH, {
+      const data = await axios.get(this.BASE_URL_SEARCH, {
         params: { api_key: this.API_KEY, query, page },
       });
+      // this.LAST_URL = `${this.BASE_URL_SEARCH}?api_key=${this.API_KEY}&query=${query}&page=${page}`;
+      // ВОТ ЭТО ТОТ URL запрос который нужен, по идее.
+      // console.log(this.LAST_URL);
       return data;
     } catch (error) {
       console.log(error);
     }
   }
 }
+
+// Пришлось создать запрос по поиску пользователя, чтобы написать нужную функцию.
+
+import { createMarcupGallery } from './createMarcupGallery';
+import PaginationSystem from './paginationSyste';
+const paginationSystem = new PaginationSystem();
+
+const cardList = document.querySelector('[data-gallery]');
+
+const formEl = document.getElementById('search-form');
+
+let URL = '';
+function onSearchSubmit(event) {
+  event.preventDefault();
+  cardList.innerHTML = '';
+  //!!! КОНКРЕТНО ЗДЕСЬ ВЫТЯГИВАЕТСЯ ПОСЛЕДНИЙ URL !!!
+  API.fetchSearchByQuery(event.target.elements.searchQuery.value, 1).then(
+    data => {
+      URL = data.request.responseURL;
+      cardList.innerHTML = createMarcupGallery(data.data.results);
+      paginationSystem.setTotalPages(data.data.total_pages);
+      paginationSystem.setPage(1);
+    }
+  );
+}
+console.log(URL);
+
+formEl.addEventListener('submit', onSearchSubmit);
