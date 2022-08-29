@@ -24,11 +24,11 @@ const createMarcupGallery = (data, flag) => {
         }" class ="gallery__img"  loading="lazy">
            <h3 class =" gallery__title">${title || name}</h3>
              <p class="gallery__text">${renderGenres(genre_ids)} | ${(
-          release_date || first_air_date
-        ).slice(
-          0,
-          4
-        )} <span class = "gallery__text-range">${vote_average}</span> </p>  
+          release_date ||
+          first_air_date ||
+          '2010'
+        ).slice(0, 4)}
+        <span class = "gallery__text-range">${vote_average}</span> </p>
              </button>
         </li>`,
       ''
@@ -47,8 +47,11 @@ const createMarcupGallery = (data, flag) => {
       }" class ="gallery__img"  loading="lazy">
            <h3 class ="gallery__title">${title || name}</h3>
              <p class="gallery__text">${renderGenres(genre_ids)} | ${(
-        release_date || first_air_date
-      ).slice(0, 4)}</p>
+        release_date ||
+        first_air_date ||
+        '2010'
+      ).slice(0, 4)}
+      </p>
              </button>
         </li>`,
     ''
@@ -71,6 +74,7 @@ const createMarcupGalleryAlt = (data, flag) => {
       release_date,
       first_air_date,
       vote_average,
+      known_for,
     }) => {
       // ссылки на каждый элемент ,если нужно будет ,то все в один объект потом впихну,ну и название тоже изменю,если надо будет
       const liInGallaryEl = document.createElement('li');
@@ -83,7 +87,9 @@ const createMarcupGalleryAlt = (data, flag) => {
       imgInButtonEl.src = `${CaptchaPosterPath(base_url_post, poster_path)}`;
       imgInButtonEl.alt = `${title || name}`;
       pInGallaryEl.textContent = `${renderGenres(genre_ids)} | ${(
-        release_date || first_air_date
+        release_date ||
+        first_air_date ||
+        '2010'
       ).slice(0, 4)}`;
       h3InGallaryEl.textContent = `${title || name}`;
       imgInButtonEl.setAttribute('loading', 'lazy');
@@ -117,7 +123,7 @@ const createMarcupGalleryAlt = (data, flag) => {
   );
 };
 
-function renderGenres(array) {
+function renderGenres(array = []) {
   console.log('vasg', array);
   if (!array.length) {
     return 'Unknown';
