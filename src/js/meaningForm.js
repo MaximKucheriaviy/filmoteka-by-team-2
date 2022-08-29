@@ -5,10 +5,10 @@ export default function meaningForm (){
     }
      
     refs.searchForm.addEventListener('submit', onSearch);
-
+    
     function onSearch(e) {
         e.preventDefault();
         const data = e.currentTarget.elements.searchQuery.value;
-        console.log(data); 
+        console.log(data);    
     };
 }
