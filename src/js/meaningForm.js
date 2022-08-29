@@ -1,8 +1,10 @@
 
 export default function meaningForm (){
-    const searchForm = document.querySelector('.search-form');
+    const refs = {
+        searchForm :document.querySelector('.search-form')
+    }
      
-    searchForm.addEventListener('submit', onSearch);
+    refs.searchForm.addEventListener('submit', onSearch);
 
     function onSearch(e) {
         e.preventDefault();
