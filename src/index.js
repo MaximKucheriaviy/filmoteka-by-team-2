@@ -1,11 +1,8 @@
 import infoFilm from './js/film-info-modal';
 import API from './js/api';
-import {
-  createMarcupGallery,
-  createMarcupGalleryAlt,
-} from './js/createMarcupGallery';
+import {createMarcupGallery,createMarcupGalleryAlt} from './js/createMarcupGallery';
 import PaginationSystem from './js/paginationSyste';
-import onLoad from './js/screenloader';
+import screnLoaderTogle from './js/screenloader';
 
 onLoad()
 infoFilm();
