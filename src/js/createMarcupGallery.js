@@ -22,14 +22,14 @@ const createMarcupGallery = (data, flag) => {
           <img src="https://image.tmdb.org/t/p/w500/${poster_path}"  alt="${
           title || name
         }" class ="gallery__img"  loading="lazy">
-        </button>
-           <p class =" gallery__text">
-             <span class="gallery__text-title">${title || name}</span> </br>
-              ${genre_ids.map(element => findJanres(element))} | ${(
+           <h3 class =" gallery__title">${title || name}</h3>
+             <p class="gallery__text">${renderGenres(genre_ids)} | ${(
           release_date || first_air_date
-        ).slice(0, 4)}
-              <span class = "gallery__text-range">${vote_average}</span>
-             </p>
+        ).slice(
+          0,
+          4
+        )} <span class = "gallery__text-range">${vote_average}</span> </p>  
+             </button>
         </li>`,
       ''
     );
@@ -40,20 +40,16 @@ const createMarcupGallery = (data, flag) => {
       { poster_path, title, genre_ids, id, release_date, name, first_air_date }
     ) =>
       acc +
-      `<li class="gallery__item">
-
+      `  <li class="gallery__item">
       <button type="button" data-id="${id}" data-click class ="gallery__button">
           <img src="https://image.tmdb.org/t/p/w500/${poster_path}"  alt="${
         title || name
-      }" class ="gallery__img"  loading ="lazy">
-        </button>
-           <p class =" gallery__text">
-             <span class="gallery__text-title">${title || name}</span> </br>
-              ${genre_ids.map(element => findJanres(element))} | ${(
+      }" class ="gallery__img"  loading="lazy">
+           <h3 class ="gallery__title">${title || name}</h3>
+             <p class="gallery__text">${renderGenres(genre_ids)} | ${(
         release_date || first_air_date
-      ).slice(0, 4)}
-             </p>
-
+      ).slice(0, 4)}</p>
+             </button>
         </li>`,
     ''
   );
@@ -66,6 +62,7 @@ const createMarcupGalleryAlt = (data, flag) => {
 
   return data.map(
     ({
+      base_url_post = 'https://image.tmdb.org/t/p/w500/',
       poster_path,
       title,
       genre_ids,
@@ -79,17 +76,16 @@ const createMarcupGalleryAlt = (data, flag) => {
       const liInGallaryEl = document.createElement('li');
       const buttonInGallaryEl = document.createElement('button');
       const imgInButtonEl = document.createElement('img');
-      const brInGallarryEl = document.createElement('br');
+      const h3InGallaryEl = document.createElement('h3');
       const pInGallaryEl = document.createElement('p');
-      const spanTextInGallaryEl = document.createElement('span');
 
-      //наполнение контентом карточки ,классы добавлю позже
-      imgInButtonEl.src = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+      //наполнение контентом карточки ,
+      imgInButtonEl.src = `${CaptchaPosterPath(base_url_post, poster_path)}`;
       imgInButtonEl.alt = `${title || name}`;
-      pInGallaryEl.textContent = `${genre_ids.map(element =>
-        findJanres(element)
-      )} | ${(release_date || first_air_date).slice(0, 4)}`;
-      spanTextInGallaryEl.textContent = `${title || name}`;
+      pInGallaryEl.textContent = `${renderGenres(genre_ids)} | ${(
+        release_date || first_air_date
+      ).slice(0, 4)}`;
+      h3InGallaryEl.textContent = `${title || name}`;
       imgInButtonEl.setAttribute('loading', 'lazy');
       buttonInGallaryEl.dataset.id = `${id}`;
       buttonInGallaryEl.dataset.click = '';
@@ -98,13 +94,14 @@ const createMarcupGalleryAlt = (data, flag) => {
       liInGallaryEl.classList.add('gallery__item');
       buttonInGallaryEl.classList.add('gallery__button');
       imgInButtonEl.classList.add('gallery__img');
+      h3InGallaryEl.classList.add('gallery__title');
       pInGallaryEl.classList.add('gallery__text');
-      spanTextInGallaryEl.classList.add('gallery__text-title');
 
       //вставка элеметов в DOM нужном порядке
       buttonInGallaryEl.append(imgInButtonEl);
-      pInGallaryEl.prepend(spanTextInGallaryEl);
-      spanTextInGallaryEl.append(brInGallarryEl);
+      buttonInGallaryEl.append(h3InGallaryEl);
+      buttonInGallaryEl.append(pInGallaryEl);
+
       if (flag) {
         //ранг добавляется когда есть флаг ,но он сливается с другим тегом ,надо класс добавить что бы разделить
         const spanRangeInGallaryEl = document.createElement('span');
@@ -113,14 +110,32 @@ const createMarcupGalleryAlt = (data, flag) => {
         pInGallaryEl.append(spanRangeInGallaryEl);
       }
       // сборка все в 'виноградную гроздь'
-      liInGallaryEl.append(buttonInGallaryEl, pInGallaryEl);
-      console.log(liInGallaryEl);
+      liInGallaryEl.append(buttonInGallaryEl);
+
       return liInGallaryEl;
     }
   );
 };
 
+function renderGenres(array) {
+  console.log('vasg', array);
+  if (!array.length) {
+    return 'Unknown';
+  }
+  return array.map(element => findJanres(element));
+}
+
+function CaptchaPosterPath(base_url, url_patch) {
+  if (!url_patch) {
+    return 'https://www.themoviedb.org/assets/2/apple-touch-icon-cfba7699efe7a742de25c28e08c38525f19381d31087c69e89d6bcb8e3c0ddfa.png';
+  }
+  return `${base_url + url_patch}`;
+}
+
 export { createMarcupGalleryAlt, createMarcupGallery };
 
 //  использовать что бы вставть в галерею , флаг true нужен для того что бы ранг показывть,лучше вынести его в одельную переменную
 // refs.cardList.append(...createMarcupGallery(response.data.results, true));
+
+// https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
+// https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
