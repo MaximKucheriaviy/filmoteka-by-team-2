@@ -16,9 +16,12 @@ export default function infoFilm() {
 
    function onOpenModalBtnClick(e){
     const target = e.target.closest('[data-click]');
-    if(target){
-      refs.modal.style.display = "block";
+    if(!target){
+      return;
     }
+    refs.modal.style.display = "block";
+    const film = findFilmById(Number.parseInt(target.dataset.id));
+    createModalMucrup(film);
   }
    function oncloseModalBtnClick() {
    refs.modal.style.display = "none"
@@ -39,3 +42,53 @@ export default function infoFilm() {
   }
   
 } 
+
+
+
+function createModalMucrup(filmInfo){
+  const filmContainer = document.querySelector('.film-container');
+  const referense = `
+  <div class="image-film-container">
+      <img class = "film-image" src="https://image.tmdb.org/t/p/w500${filmInfo.backdrop_path}" alt="POSTER">
+  </div>
+  <div class="film-about-container">
+      <h2 class="film-title">${ filmInfo.original_title}</h2>
+
+      <table class="film-about-table">
+        <tr class="film-about-textrow">
+          <td>vote/votes</td>
+          <td id=""><span class="inbox-id">${filmInfo.vote_average}</span>${filmInfo.vote_count}</td>
+        </tr>
+        <tr class="film-about-textrow">
+          <td>popularity</td>
+          <td id="">${filmInfo.popularity}</td>
+        </tr>
+        <tr class="film-about-textrow">
+          <td>original title</td>
+          <td id="">${filmInfo.original_title}</td>
+        </tr>
+        <tr class="film-about-textrow">
+          <td>genre</td>
+          <td id="">${filmInfo.genre_ids}</td>
+        </tr>
+      </table>
+      <h3 class="title-about">About</h3>
+      <p id="" class="film-about-text">${filmInfo.overview}</p>
+      <ul class="film-btn-list">
+          <li>
+              <button id="addWatchedButton" class="film-add-button">Add to
+              watched</button>
+          </li>
+          <li>
+              <button id="addQueueButton" class="film-add-button">Add to
+              queue</button>
+          </li>
+      </ul>`
+
+      filmContainer.innerHTML = referense;
+}
+
+function findFilmById(id){
+  const reneredCards = JSON.parse(localStorage.getItem('reneredCards'));
+  return reneredCards.find(item => item.id === id);
+}
