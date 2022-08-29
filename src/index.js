@@ -6,7 +6,8 @@ import screnLoaderTogle from './js/screenloader';
 
 
 infoFilm();
-
+import meaningForm from "./js/meaningForm";
+meaningForm ();
 const paginationSystem = new PaginationSystem();
 
 const refs = {
