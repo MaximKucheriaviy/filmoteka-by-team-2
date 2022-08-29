@@ -1,11 +1,12 @@
 export default function infoFilm() {
    const refs = {
-    openModalBtn: document.querySelector("[data-gallery]"),
-    closeModalBtn: document.querySelector("[data-modal-close]"),
+    galleryEl: document.querySelector("[data-gallery]"),
+    openModal: document.querySelector(".gallery-button"),
+    closeModal: document.querySelector("[data-modal-close]"),
     modal: document.querySelector("[data-modal]"),
    }
-   refs.openModalBtn.addEventListener("click", onOpenModalBtnClick);
-   refs.closeModalBtn.addEventListener("click", oncloseModalBtnClick);
+   refs.galleryEl.addEventListener("click", onOpenModalBtnClick);
+   refs.closeModal.addEventListener("click", oncloseModalBtnClick);
    window.addEventListener("click", onWindowClick)
    document.addEventListener('keydown', function(event){
     if(event.key === "Escape"){
@@ -13,9 +14,15 @@ export default function infoFilm() {
     }
   });
 
-   function onOpenModalBtnClick(){
-      refs.modal.style.display = "block"
-   }
+   function onOpenModalBtnClick(e){
+    refs.modal.style.display = "block"
+    // e.preventDefault();
+    // const IsFilmCard = e.target.classList.contains(".gallery-button");
+    // if (IsFilmCard) {
+    //   refs.modal.style.display = "block"
+    //   console.log("клик на кнопку",refs.galleryEl);
+    // } 
+  }
    function oncloseModalBtnClick() {
    refs.modal.style.display = "none"
    }
@@ -25,12 +32,13 @@ export default function infoFilm() {
     }
    }
 
-  // function onCardFilmClick(id, isFilm) {
-  //   if(isFilm) {
-  //     let localStorageData = [...JSON.parse(localStorage.getItem("[data-gallery]"))];
-      
-  //   } 
-  //   console.log(localStorageData);
-  // }
+  function createMarkupFilmCard(id) {
+      let localStorageData = [...JSON.parse(localStorage.getItem("reneredCards"))];
+      localStorageData.find( element =>
+        element.id === id
+      )
+    
+    console.log(localStorageData);
+  }
   
 } 
