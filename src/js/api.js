@@ -8,8 +8,9 @@ export default class API {
 
   // static LAST_URL = '';
 
-  static async fetchTrendingMovies(page) {
+  static async fetchTrendingMovies(page, screenloaderShow) {
     try {
+      screenloaderShow();
       const data = await axios.get(this.BASE_URL_TRENDING, {
         params: { api_key: this.API_KEY, page },
       });
@@ -33,8 +34,9 @@ export default class API {
     }
   }
 
-  static async fetchSearchByQuery(query, page) {
+  static async fetchSearchByQuery(query, page, screenloaderShow) {
     try {
+      screenloaderShow();
       const data = await axios.get(this.BASE_URL_SEARCH, {
         params: { api_key: this.API_KEY, query, page },
       });
