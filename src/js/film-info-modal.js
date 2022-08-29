@@ -1,3 +1,5 @@
+import {setFilmToWeched, setFilmToQueue, removeFilmToWeched, removeFilmToQueue} from "./filmssetToLS";
+
 export default function infoFilm() {
    const refs = {
     galleryEl: document.querySelector("[data-gallery]"),
@@ -47,12 +49,21 @@ export default function infoFilm() {
 
 function createModalMucrup(filmInfo){
   const filmContainer = document.querySelector('.film-container');
+  const b1 = document.querySelector('#addWatchedButton');
+  const b2 = document.querySelector('#addWatchedButton');
+
+  if(b1){
+    b1.remove('click', onAddWatchedButton);
+  }
+  if(b2){
+    b2.remove('click', onAddQueueButton);
+  }
   const referense = `
   <div class="image-film-container">
       <img class = "film-image" src="https://image.tmdb.org/t/p/w500${filmInfo.backdrop_path}" alt="POSTER">
   </div>
   <div class="film-about-container">
-      <h2 class="film-title">${ filmInfo.original_title}</h2>
+      <h2 class="film-title">${ filmInfo.original_title || filmInfo.name}</h2>
 
       <table class="film-about-table">
         <tr class="film-about-textrow">
@@ -65,7 +76,7 @@ function createModalMucrup(filmInfo){
         </tr>
         <tr class="film-about-textrow">
           <td>original title</td>
-          <td id="">${filmInfo.original_title}</td>
+          <td id="">${filmInfo.original_title || filmInfo.name}</td>
         </tr>
         <tr class="film-about-textrow">
           <td>genre</td>
@@ -76,19 +87,31 @@ function createModalMucrup(filmInfo){
       <p id="" class="film-about-text">${filmInfo.overview}</p>
       <ul class="film-btn-list">
           <li>
-              <button id="addWatchedButton" class="film-add-button">Add to
+              <button id="addWatchedButton" data-id = ${filmInfo.id} class="film-add-button">Add to
               watched</button>
           </li>
           <li>
-              <button id="addQueueButton" class="film-add-button">Add to
+              <button id="addQueueButton" data-id = ${filmInfo.id} class="film-add-button">Add to
               queue</button>
           </li>
       </ul>`
 
       filmContainer.innerHTML = referense;
+      document.querySelector('#addWatchedButton').addEventListener('click', onAddWatchedButton);
+      document.querySelector('#addQueueButton').addEventListener('click', onAddQueueButton);
 }
 
 function findFilmById(id){
   const reneredCards = JSON.parse(localStorage.getItem('reneredCards'));
   return reneredCards.find(item => item.id === id);
+}
+
+function onAddQueueButton(event){
+  const id = Number.parseInt(event.target.dataset.id);
+  setFilmToQueue(id);
+}
+
+function onAddWatchedButton(event){
+  const id = Number.parseInt(event.target.dataset.id);
+  setFilmToWeched(id);
 }
