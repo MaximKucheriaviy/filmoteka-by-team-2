@@ -4,41 +4,46 @@
     stroke: #ffffff;
     stroke-width: 2px;
 }
-// body{
-//     background-color: rgba(0, 0, 0, 0.87);
-//     color: #FF6B08;
-// }
+
 .header {
-    display: flex;
-}
-.container-main {
-    width: 1380px;
-    height: 216px;
-    padding-top: 40px;
-    padding-left: 32px;
-    padding-right: 32px;
+   max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
 
-    background-image:
+    
+    
+        background-image:
             url(/src/images/hero-filmoteka.jpg);
     
-    @include mq(tablet-only) {
-        background-image: url(/src/images/background1-tablet.jpg);
-        opacity: 0.9;
+        @include mq(tablet-only) {
+            background-image: url(/src/images/background1-tablet.jpg);
         }
     
-    @include mq(mobile-only) {
-        background-image: url(/src/images/background1-mobile.jpg);
-    }
+        @include mq(mobile-only) {
+            background-image: url(/src/images/background1-mobile.jpg);
+        }
 }
-
-
-.container-mylibrary{
-    width: 1380px;
+.header-container {
+    max-width: 1280px;
     height: 216px;
     padding-top: 40px;
     padding-left: 32px;
     padding-right: 32px;
+    
+}
+
+
+.header-library{
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
 
     background-image:
@@ -47,13 +52,13 @@
     @include mq(tablet-only) {
         height: 219px;
         background-ima1ge: url(/src/images/background2-tablet.jpg);
-        background-size: cover;
-        opacity: 0.9;
+    
+    
     }
     @include mq(mobile-only) {
         height: 230px;
         background-image: url(/src/images/background2-mobile.jpg);
-        background-size: cover;
+        
     }
 }
 
@@ -166,6 +171,24 @@ a.logo {
     background: transparent;
 }
 
+.message{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+
+
+    color: #FF001B;
+
+}
+
+.ishidden {
+    display: none;
+}
 
 
 .wrapper-btn{
