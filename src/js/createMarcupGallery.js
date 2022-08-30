@@ -1,5 +1,6 @@
 import findJanres from './findJanreWithId';
 const createMarcupGallery = (data, flag) => {
+  // вносим объект как строку в LocalStorage
   localStorage.setItem('reneredCards', JSON.stringify(data));
   if (flag) {
     return data.reduce(
@@ -61,8 +62,6 @@ const createMarcupGallery = (data, flag) => {
 const createMarcupGalleryAlt = (data, flag) => {
   // вносим объект как строку в LocalStorage
   localStorage.setItem('reneredCards', JSON.stringify(data));
-  console.log(flag);
-
   return data.map(
     ({
       base_url_post = 'https://image.tmdb.org/t/p/w500/',
@@ -74,16 +73,15 @@ const createMarcupGalleryAlt = (data, flag) => {
       release_date,
       first_air_date,
       vote_average,
-      known_for,
     }) => {
-      // ссылки на каждый элемент ,если нужно будет ,то все в один объект потом впихну,ну и название тоже изменю,если надо будет
+      // ссылки на каждый элемент
       const liInGallaryEl = document.createElement('li');
       const buttonInGallaryEl = document.createElement('button');
       const imgInButtonEl = document.createElement('img');
       const h3InGallaryEl = document.createElement('h3');
       const pInGallaryEl = document.createElement('p');
 
-      //наполнение контентом карточки ,
+      //наполнение контентом карточки
       imgInButtonEl.src = `${CaptchaPosterPath(base_url_post, poster_path)}`;
       imgInButtonEl.alt = `${title || name}`;
       pInGallaryEl.textContent = `${renderGenres(genre_ids)} | ${(
@@ -109,7 +107,7 @@ const createMarcupGalleryAlt = (data, flag) => {
       buttonInGallaryEl.append(pInGallaryEl);
 
       if (flag) {
-        //ранг добавляется когда есть флаг ,но он сливается с другим тегом ,надо класс добавить что бы разделить
+        //ранг добавляется,когда есть флаг
         const spanRangeInGallaryEl = document.createElement('span');
         spanRangeInGallaryEl.textContent = `${vote_average.toFixed(1)}`;
         spanRangeInGallaryEl.classList.add('gallery__text-range');
@@ -124,24 +122,29 @@ const createMarcupGalleryAlt = (data, flag) => {
 };
 
 function renderGenres(array = []) {
-  // console.log('vasg', array);
+
   if (!array.length) {
-    return 'Unknown';
+    return 'Other';
   }
-  return array.map(element => findJanres(element));
+  const janresArr = [];
+  // невероятный костыль
+  array.forEach((elem, index) => {
+    if (index <= 1) {
+      janresArr.push(findJanres(elem));
+    } else if (index === 2) {
+      janresArr.push(findJanres('Other'));
+    }
+  });
+  return janresArr;
 }
 
 function CaptchaPosterPath(base_url, url_patch) {
   if (!url_patch) {
+    // болванка
     return 'https://www.themoviedb.org/assets/2/apple-touch-icon-cfba7699efe7a742de25c28e08c38525f19381d31087c69e89d6bcb8e3c0ddfa.png';
   }
-  return `${base_url + url_patch}`;
+  // Url картинки для карточки
+  return base_url + url_patch;
 }
 
 export { createMarcupGalleryAlt, createMarcupGallery };
-
-//  использовать что бы вставть в галерею , флаг true нужен для того что бы ранг показывть,лучше вынести его в одельную переменную
-// refs.cardList.append(...createMarcupGallery(response.data.results, true));
-
-// https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
-// https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
