@@ -8,12 +8,19 @@ export default function onFormSubmit() {
 
   refs.submitEl.addEventListener('submit', createSearchName);
   let searchFilm = '';
-
+  
   function createSearchName(eve) {
     e.preventDefault();
     searchFilm = e.currentTarget.elements.searchQuery.value.trim();
     if (searchFilm !== 0) {
       return searchFilm;
+    
     }
-  }
+  };
+  function createSearchName(e) {
+    searchFilm = e.currentTarget.elements.searchQuery.value.trim();
+    if (searchFilm !== 0) {
+      return searchFilm;
+    }
+  };
 }

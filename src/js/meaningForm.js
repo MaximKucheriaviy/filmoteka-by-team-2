@@ -5,10 +5,13 @@ export default function meaningForm (){
     }
      
     refs.searchForm.addEventListener('submit', onSearch);
-    
+    let searchFilm = '';
     function onSearch(e) {
         e.preventDefault();
-        const data = e.currentTarget.elements.searchQuery.value;
-        console.log(data);    
-    };
+        refs.searchForm.reset(); 
+        searchFilm = e.currentTarget.elements.searchQuery.value.trim();
+        if (searchFilm !== 0) {
+            return searchFilm;}
+                  
+   }
 }
