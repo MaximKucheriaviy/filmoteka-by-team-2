@@ -1,14 +1,16 @@
 import infoFilm from './js/film-info-modal';
 import API from './js/api';
-import {createMarcupGallery,createMarcupGalleryAlt} from './js/createMarcupGallery';
+import {createMarcupGallery, createMarcupGalleryAlt} from './js/createMarcupGallery';
 import PaginationSystem from './js/paginationSyste';
 import screnLoaderTogle from './js/screenloader';
 import meaningForm from "./js/meaningForm";
+import meaningForm from "./js/meaningForm";
+
+
+meaningForm ();
 
 
 infoFilm();
-import meaningForm from "./js/meaningForm";
-meaningForm ();
 const paginationSystem = new PaginationSystem();
 
 const refs = {
@@ -18,7 +20,6 @@ const refs = {
 
 API.fetchTrendingMovies(1, screnLoaderTogle)
 .then(response => {
-  console.log(response.data);
   refs.cardList.innerHTML = createMarcupGallery(response.data.results);
   paginationSystem.setTotalPages(response.data.total_pages);
   paginationSystem.setPage(1);

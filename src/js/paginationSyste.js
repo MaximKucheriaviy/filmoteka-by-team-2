@@ -73,7 +73,7 @@ class PaginationSystem{
             this.refs.arrowRight.style.display = "inline-block"
             
             if(this.countOfPages < 10){
-                for(let i = 1; i <= this.countOfPages - 1; i++){
+                for(let i = 1; i <= this.countOfPages; i++){
                     buttonArr[i].textContent = i;
                     buttonArr[i].style.display = "inline-block";
                 }
