@@ -68,7 +68,7 @@ function createModalMucrup(filmInfo){
       <table class="film-about-table">
         <tr class="film-about-textrow">
           <td>vote / votes</td>
-          <td class="textrow-id"><span class="inbox-id">${filmInfo.vote_average}</span><span class= "inbox-slash">/</span><span class = "inbox-span">${filmInfo.vote_count}</span></td>
+          <td class="textrow-id"><span class="inbox-id">${filmInfo.vote_average}</span><span class= "inbox-slash"> /</span><span class = "inbox-span">${filmInfo.vote_count}</span></td>
         </tr>
         <tr class="film-about-textrow">
           <td>popularity</td>
@@ -76,28 +76,35 @@ function createModalMucrup(filmInfo){
         </tr>
         <tr class="film-about-textrow">
           <td>original title</td>
-
-          <td id="">${filmInfo.original_title || filmInfo.name}</td>
-
+          <td class="textrow-id" id="">${filmInfo.original_title || filmInfo.name}</td></span>
         </tr>
         <tr class="film-about-textrow">
           <td>genre</td>
-          <td class="textrow-id">${filmInfo.genre_ids}</td>
+          <td class="textrow-genres">${filmInfo.genre_ids}</td>
         </tr>
       </table>
       <h3 class="title-about">About</h3>
       <p id="" class="film-about-text">${filmInfo.overview}</p>
       <ul class="film-btn-list">
 
-          <li>
+          <li class="film-btn-item">
               <button id="addWatchedButton" data-id = ${filmInfo.id} class="film-add-button">Add to
               watched</button>
           </li>
-          <li>
+          <li class="film-btn-item">
+          <button id="removeWatchedButton" data-id = ${filmInfo.id} class="film-add-button">Remove to
+          watched</button>
+      </li>
+          <li class="film-btn-item">
               <button id="addQueueButton" data-id = ${filmInfo.id} class="film-add-button">Add to
 
               queue</button>
           </li>
+          <li class="film-btn-item">
+          <button id="removeQueueButton" data-id = ${filmInfo.id} class="film-add-button">Remove to
+
+          queue</button>
+      </li>
       </ul>`
 
       filmContainer.innerHTML = referense;
@@ -119,3 +126,13 @@ function onAddWatchedButton(event){
   const id = Number.parseInt(event.target.dataset.id);
   setFilmToWeched(id);
 }
+
+// function changeBtn(id) {
+//   const filmId = Number.parseInt(event.target.dataset.id)
+//   const filmWatched = JSON.parse(localStorage.getItem("renderedCards"));
+//   const result = filmWatched.find(item => item.id === filmId)
+//   if(result) {
+//     onAddWatchedButton()
+//   }
+//     onAddQueueButton()
+// }
