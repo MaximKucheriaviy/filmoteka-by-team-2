@@ -122,6 +122,7 @@ const createMarcupGalleryAlt = (data, flag) => {
 };
 
 function renderGenres(array = []) {
+
   if (!array.length) {
     return 'Other';
   }
