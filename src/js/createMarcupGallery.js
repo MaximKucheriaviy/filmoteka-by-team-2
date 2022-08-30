@@ -1,5 +1,6 @@
 import findJanres from './findJanreWithId';
 const createMarcupGallery = (data, flag) => {
+  // вносим объект как строку в LocalStorage
   localStorage.setItem('reneredCards', JSON.stringify(data));
   if (flag) {
     return data.reduce(
@@ -73,14 +74,14 @@ const createMarcupGalleryAlt = (data, flag) => {
       first_air_date,
       vote_average,
     }) => {
-      // ссылки на каждый элемент ,если нужно будет ,то все в один объект потом впихну,ну и название тоже изменю,если надо будет
+      // ссылки на каждый элемент
       const liInGallaryEl = document.createElement('li');
       const buttonInGallaryEl = document.createElement('button');
       const imgInButtonEl = document.createElement('img');
       const h3InGallaryEl = document.createElement('h3');
       const pInGallaryEl = document.createElement('p');
 
-      //наполнение контентом карточки ,
+      //наполнение контентом карточки
       imgInButtonEl.src = `${CaptchaPosterPath(base_url_post, poster_path)}`;
       imgInButtonEl.alt = `${title || name}`;
       pInGallaryEl.textContent = `${renderGenres(genre_ids)} | ${(
@@ -106,7 +107,7 @@ const createMarcupGalleryAlt = (data, flag) => {
       buttonInGallaryEl.append(pInGallaryEl);
 
       if (flag) {
-        //ранг добавляется когда есть флаг ,но он сливается с другим тегом ,надо класс добавить что бы разделить
+        //ранг добавляется,когда есть флаг
         const spanRangeInGallaryEl = document.createElement('span');
         spanRangeInGallaryEl.textContent = `${vote_average.toFixed(1)}`;
         spanRangeInGallaryEl.classList.add('gallery__text-range');
@@ -138,8 +139,10 @@ function renderGenres(array = []) {
 
 function CaptchaPosterPath(base_url, url_patch) {
   if (!url_patch) {
+    // болванка
     return 'https://www.themoviedb.org/assets/2/apple-touch-icon-cfba7699efe7a742de25c28e08c38525f19381d31087c69e89d6bcb8e3c0ddfa.png';
   }
+  // Url картинки для карточки
   return base_url + url_patch;
 }
 
