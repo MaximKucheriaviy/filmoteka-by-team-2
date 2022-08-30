@@ -60,7 +60,7 @@ function createModalMucrup(filmInfo){
   }
   const referense = `
   <div class="image-film-container">
-      <img class = "film-image" src="https://image.tmdb.org/t/p/w500${filmInfo.backdrop_path}" alt="POSTER">
+      <img class = "film-image" src="https://image.tmdb.org/t/p/w500${filmInfo.poster_path}" alt="POSTER">
   </div>
   <div class="film-about-container">
       <h2 class="film-title">${ filmInfo.original_title || filmInfo.name}</h2>
