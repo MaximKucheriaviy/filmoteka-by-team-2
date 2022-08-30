@@ -1,10 +1,9 @@
 // выводит сообщение об ошибке под ИНПУТОМ.
 
-export default function createMessage(fetchResult) {
+export default function createMessage() {
   const messageEl = document.querySelector('.message');
-  if (fetchResult !== true) {
-    refs.messageEl.classList.remove('ishidden');
-  } else {
-    return;
-  }
+  messageEl.classList.remove('ishidden');
+  setTimeout(() => {
+    messageEl.classList.add('ishidden');
+  }, 2000);
 }
