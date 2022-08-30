@@ -7,7 +7,7 @@
 
 .header {
 
-   max-width: 1600px;
+   max-width: auto;
     margin-left: auto;
     margin-right: auto;
 
@@ -30,6 +30,8 @@
 }
 .header-container {
     max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
     height: 216px;
     padding-top: 40px;
     padding-left: 32px;
@@ -39,7 +41,7 @@
 
 
 .header-library{
-    max-width: 1600px;
+    max-width: auto;
     margin-left: auto;
     margin-right: auto;
 
@@ -261,6 +263,7 @@ font-family: 'Roboto';
     text-align: center;
     text-transform: uppercase;
     color: #FFFFFF;
+    background: transparent;
 
 border: 1px solid #FFFFFF;
 border-radius: 5px;
