@@ -1,4 +1,4 @@
-export default findJanres = id => {
+export default function findJanres(id){
   let janre = null;
   switch (id) {
     case 10759:
