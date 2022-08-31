@@ -1,6 +1,8 @@
 import {setFilmToWeched, setFilmToQueue, removeFilmToWeched, removeFilmToQueue} from "./filmssetToLS";
 import findJanres from "./findJanreWithId";
 
+const modalButtonClick = new Event('modalButtonClick');
+
 export default function infoFilm() {
    const refs = {
     galleryEl: document.querySelector("[data-gallery]"),
@@ -143,24 +145,28 @@ function onAddQueueButton(event){
   const id = Number.parseInt(event.target.dataset.id);
   setFilmToQueue(id);
   updateButtons(id)
+  window.dispatchEvent(modalButtonClick);
 }
 
 function onAddWatchedButton(event){
   const id = Number.parseInt(event.target.dataset.id);
   setFilmToWeched(id);
   updateButtons(id)
+  window.dispatchEvent(modalButtonClick);
 }
 
 function onDeleteWatchedButton(event){
   const id = Number.parseInt(event.target.dataset.id);
   removeFilmToWeched(id);
   updateButtons(id)
+  window.dispatchEvent(modalButtonClick);
 }
 
 function onDeleteQueuedButton(event){
   const id = Number.parseInt(event.target.dataset.id);
   removeFilmToQueue(id);
   updateButtons(id)
+  window.dispatchEvent(modalButtonClick);
 }
 
 
@@ -175,7 +181,7 @@ function updateButtons(id){
   const wached = JSON.parse(localStorage.getItem('wachedFilms'));
   const queue = JSON.parse(localStorage.getItem('queueFilms'));
 
-  if(wached && wached.some(item => item.id === id)){
+  if(wached && wached.length !== 0 && wached.some(item => item.id === id)){
     b1.style.display = "none";
     b2.style.display = "block";
   }
@@ -184,7 +190,7 @@ function updateButtons(id){
     b1.style.display = "block";
   }
 
-  if(queue && queue.some(item => item.id === id)){
+  if(queue && queue.length !== 0 && queue.some(item => item.id === id)){
     b3.style.display = "none";
     b4.style.display = "block";
   }

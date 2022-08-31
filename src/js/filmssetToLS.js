@@ -1,5 +1,7 @@
 export {setFilmToWeched, setFilmToQueue, removeFilmToWeched, removeFilmToQueue};
 
+
+let lastdeleted;
 function setFilmToWeched(id){
     let data = localStorage.getItem('wachedFilms');
     if(data){
@@ -11,7 +13,8 @@ function setFilmToWeched(id){
     if(data.some(intem => intem.id === id)){
         return;
     }
-    data.push(findFilmById(id));
+    const result = findFilmById(id);
+    data.push(result || lastdeleted);
     data = JSON.stringify(data);
     localStorage.setItem('wachedFilms', data);
 }
@@ -27,7 +30,8 @@ function setFilmToQueue(id){
     if(data.some(intem => intem.id === id)){
         return;
     }
-    data.push(findFilmById(id));
+    const result = findFilmById(id);
+    data.push(result || lastdeleted);
     data = JSON.stringify(data);
     localStorage.setItem('queueFilms', data);
 }
@@ -37,7 +41,7 @@ function removeFilmToWeched(id){
     if(data.every(intem => intem.id !== id)){
         return;
     }
-    data.splice(data.findIndex(intem => intem.id === id), 1);
+    lastdeleted = data.splice(data.findIndex(intem => intem.id === id), 1)[0];
     data = JSON.stringify(data);
     localStorage.setItem('wachedFilms', data);
 }
@@ -47,7 +51,7 @@ function removeFilmToQueue(id){
     if(data.every(intem => intem.id !== id)){
         return;
     }
-    data.splice(data.findIndex(intem => intem.id === id), 1);
+    lastdeleted = data.splice(data.findIndex(intem => intem.id === id), 1)[0];
     data = JSON.stringify(data);
     localStorage.setItem('queueFilms', data);
 }

@@ -83,3 +83,8 @@ function queueOnClick(){
     refs.queueBtn.classList.toggle('button-checced');
     renderPage();
 }
+
+
+window.addEventListener('modalButtonClick', (event) =>{
+    renderPage();
+});
