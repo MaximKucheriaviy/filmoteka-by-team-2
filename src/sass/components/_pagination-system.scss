@@ -15,7 +15,9 @@
     display: flex;
     &__arrow{
         background-color: #F7F7F7;
-        
+        &__reversed{
+            transform: rotateZ(180deg);
+        }
     }
     &__clicable{
         &:hover{

@@ -61,11 +61,20 @@ class PaginationSystem{
     clickHendler(event){
         const eventNew = new Event("pagination-system-clicked");
         const target = event.target;
-        if(target.classList.contains("pagination-button__clicable") && target.textContent !== "arr" && target.textContent !== "arl"){
+        if(target.classList.contains("pagination-button__clicable") && !target.classList.contains("pagination-button__arrow")){
             this.setPage(Number.parseInt(target.textContent));
+        }
+        else if(target.classList.contains("pagination-button__clicable") && target.classList.contains("pagination-button__arrow")){
+            if(target.classList.contains("pagination-button__arrow__reversed")){
+                this.page !== 1 && this.setPage(this.page - 1);
+            }
+            else{
+                this.page !== this.countOfPages && this.setPage(this.page + 1);
+            }
         }
         if(target.classList.contains("pagination-button__clicable")){
             this.mainList.dispatchEvent(eventNew);
+            window.scroll(0, 0);
         }
     }
     renderOnDesctop(buttonArr){
