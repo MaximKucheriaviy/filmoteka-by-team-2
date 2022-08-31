@@ -34,7 +34,7 @@ function setFilmToQueue(id){
 
 function removeFilmToWeched(id){
     let data = JSON.parse(localStorage.getItem('wachedFilms'));
-    if(data.some(intem => intem.id !== id)){
+    if(data.every(intem => intem.id !== id)){
         return;
     }
     data.splice(data.findIndex(intem => intem.id === id), 1);
@@ -44,7 +44,7 @@ function removeFilmToWeched(id){
 
 function removeFilmToQueue(id){
     let data = JSON.parse(localStorage.getItem('queueFilms'));
-    if(data.some(intem => intem.id !== id)){
+    if(data.every(intem => intem.id !== id)){
         return;
     }
     data.splice(data.findIndex(intem => intem.id === id), 1);

@@ -104,20 +104,20 @@ function createModalMucrup(filmInfo){
       <p id="" class="film-about-text">${filmInfo.overview}</p>
       <ul class="film-btn-list">
 
-          <li class="film-btn-item">
+          <li class="film-btn-item addWatchedButton">
               <button id="addWatchedButton" data-id = ${filmInfo.id} class="film-add-button">Add to
               watched</button>
           </li>
-          <li class="film-btn-item">
+          <li class="film-btn-item removeWatchedButton">
           <button id="removeWatchedButton" data-id = ${filmInfo.id} class="film-add-button">Remove to
           watched</button>
-      </li>
-          <li class="film-btn-item">
+          </li>
+          <li class="film-btn-item addQueueButton">
               <button id="addQueueButton" data-id = ${filmInfo.id} class="film-add-button">Add to
 
               queue</button>
           </li>
-          <li class="film-btn-item">
+          <li class="film-btn-item removeQueueButton">
           <button id="removeQueueButton" data-id = ${filmInfo.id} class="film-add-button">Remove to
 
           queue</button>
@@ -129,6 +129,9 @@ function createModalMucrup(filmInfo){
       document.querySelector('#addQueueButton').addEventListener('click', onAddQueueButton);
       document.querySelector('#removeWatchedButton').addEventListener('click', onDeleteWatchedButton);
       document.querySelector('#removeQueueButton').addEventListener('click', onDeleteQueuedButton);
+      
+
+      updateButtons(filmInfo.id);
 }
 
 function findFilmById(id){
@@ -139,45 +142,55 @@ function findFilmById(id){
 function onAddQueueButton(event){
   const id = Number.parseInt(event.target.dataset.id);
   setFilmToQueue(id);
+  updateButtons(id)
 }
 
 function onAddWatchedButton(event){
   const id = Number.parseInt(event.target.dataset.id);
   setFilmToWeched(id);
+  updateButtons(id)
 }
 
 function onDeleteWatchedButton(event){
   const id = Number.parseInt(event.target.dataset.id);
   removeFilmToWeched(id);
+  updateButtons(id)
 }
 
 function onDeleteQueuedButton(event){
   const id = Number.parseInt(event.target.dataset.id);
   removeFilmToQueue(id);
+  updateButtons(id)
 }
 
 
 function updateButtons(id){
-  const b1 = document.querySelector('#addWatchedButton');
-  const b2 = document.querySelector('#addQueueButton');
-  const b3 = document.querySelector('#removeWatchedButton');
-  const b4 = document.querySelector('#removeQueueedButton');
+  console.log(id);
+  const b1 = document.querySelector('.addWatchedButton');
+  const b2 = document.querySelector('.removeWatchedButton');
+  const b3 = document.querySelector('.addQueueButton');
+  const b4 = document.querySelector('.removeQueueButton');
+
 
   const wached = JSON.parse(localStorage.getItem('wachedFilms'));
   const queue = JSON.parse(localStorage.getItem('queueFilms'));
 
-  if(wached.some(item => item.id === id)){
-    b2.style.display = "none";
+  if(wached && wached.some(item => item.id === id)){
+    b1.style.display = "none";
+    b2.style.display = "block";
   }
   else{
-    b3.style.display = "none";
+    b2.style.display = "none";
+    b1.style.display = "block";
   }
 
-  if(queue.some(item => item.id === id)){
-    b2.style.display = "none";
+  if(queue && queue.some(item => item.id === id)){
+    b3.style.display = "none";
+    b4.style.display = "block";
   }
   else{
-    b3.style.display = "none";
+    b4.style.display = "none";
+    b3.style.display = "block";
   }
 }
 
