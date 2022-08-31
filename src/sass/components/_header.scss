@@ -9,8 +9,8 @@
 
     max-width: auto;
 
-    margin-left: auto;
-    margin-right: auto;
+    // margin-left: auto;
+    // margin-right: auto;
 
     background-repeat: no-repeat;
     background-position: center;
@@ -23,10 +23,12 @@
 
     @include mq(tablet-only) {
         background-image: url(/src/images/background1-tablet.jpg);
+
     }
 
     @include mq(mobile-only) {
         background-image: url(/src/images/background1-mobile.jpg);
+    
     }
 }
 
@@ -53,8 +55,8 @@
 .header-library {
 
     max-width: auto;
-    margin-left: auto;
-    margin-right: auto;
+    // margin-left: auto;
+    // margin-right: auto;
 
     background-repeat: no-repeat;
     background-position: center;
