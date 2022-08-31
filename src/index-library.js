@@ -18,7 +18,14 @@ refs.queueBtn.addEventListener('click', queueOnClick);
 
 renderPage();
 
-function renderPage(paginationRework = true, page = 1){
+paginationSystem.mainList.addEventListener(
+    'pagination-system-clicked',
+    event => {
+        renderPage(paginationSystem.page, false);
+    }
+);
+
+function renderPage(page = 1, paginationRework = true){
     let perPage
     if(window.innerWidth >= 1280){
         perPage = 9
@@ -58,11 +65,21 @@ function renderPage(paginationRework = true, page = 1){
 }
 
 function wachedOnClick(){
+    if(pageStatus === "wached"){
+        return;
+    }
     pageStatus = "wached";
+    refs.wachedBtn.classList.toggle('button-checced');
+    refs.queueBtn.classList.toggle('button-checced');
     renderPage();
 }
 
 function queueOnClick(){
+    if(pageStatus === "queue"){
+        return;
+    }
     pageStatus = "queue";
+    refs.wachedBtn.classList.toggle('button-checced');
+    refs.queueBtn.classList.toggle('button-checced');
     renderPage();
 }

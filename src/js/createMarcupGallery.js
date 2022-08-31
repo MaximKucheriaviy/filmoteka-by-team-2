@@ -122,7 +122,6 @@ const createMarcupGalleryAlt = (data, flag) => {
 };
 
 function renderGenres(array = []) {
-
   if (!array.length) {
     return 'Other';
   }
@@ -147,4 +146,4 @@ function CaptchaPosterPath(base_url, url_patch) {
   return base_url + url_patch;
 }
 
-export { createMarcupGalleryAlt, createMarcupGallery };
+export { createMarcupGalleryAlt, createMarcupGallery, CaptchaPosterPath };

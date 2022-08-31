@@ -1,4 +1,5 @@
 import {setFilmToWeched, setFilmToQueue, removeFilmToWeched, removeFilmToQueue} from "./filmssetToLS";
+import findJanres from "./findJanreWithId";
 
 export default function infoFilm() {
    const refs = {
@@ -58,6 +59,12 @@ function createModalMucrup(filmInfo){
   if(b2){
     b2.remove('click', onAddQueueButton);
   }
+  filmInfo.genre_ids = filmInfo.genre_ids.map(item => findJanres(item));
+  if(filmInfo.genre_ids.length > 2){
+    filmInfo.genre_ids = filmInfo.genre_ids.slice(0, 2);
+    filmInfo.genre_ids.push('other');
+  }
+  filmInfo.genre_ids = filmInfo.genre_ids.join(" ");
   const referense = `
   <div class="image-film-container">
       <img class = "film-image" src="https://image.tmdb.org/t/p/w500${filmInfo.poster_path}" alt="POSTER">
@@ -68,11 +75,13 @@ function createModalMucrup(filmInfo){
       <table class="film-about-table">
         <tr class="film-about-textrow">
           <td>vote / votes</td>
+
           <td class="textrow-id"><span class="inbox-id">${filmInfo.vote_average}</span><span class= "inbox-slash"> /</span><span class = "inbox-span">${filmInfo.vote_count}</span></td>
+
         </tr>
         <tr class="film-about-textrow">
           <td>popularity</td>
-          <td class="textrow-id">${filmInfo.popularity}</td>
+          <td class="textrow-id">${filmInfo.popularity.toFixed(2)}</td>
         </tr>
         <tr class="film-about-textrow">
           <td>original title</td>
