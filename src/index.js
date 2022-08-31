@@ -5,6 +5,7 @@ import PaginationSystem from './js/paginationSyste';
 import screnLoaderTogle from './js/screenloader';
 import meaningForm from "./js/meaningForm";
 import meaningForm from "./js/meaningForm";
+import createMessage from "./js/createMessage"
 
 
 meaningForm ();
@@ -46,7 +47,10 @@ refs.searchForm.addEventListener('submit', event => {
   event.preventDefault();
   API.fetchSearchByQuery(meaningForm(), 1, screnLoaderTogle)
   .then(response => {
-    console.log(response.data);
+    if(response.data.total_pages === 0){
+      createMessage();
+      return;
+    }
     refs.cardList.innerHTML = createMarcupGallery(response.data.results);
     paginationSystem.setTotalPages(response.data.total_pages);
     paginationSystem.setPage(1);
