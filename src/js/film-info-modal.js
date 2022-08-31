@@ -52,12 +52,20 @@ function createModalMucrup(filmInfo){
   const filmContainer = document.querySelector('.film-container');
   const b1 = document.querySelector('#addWatchedButton');
   const b2 = document.querySelector('#addWatchedButton');
+  const b3 = document.querySelector('#removeWatchedButton');
+  const b4 = document.querySelector('#removeQueueedButton');
 
   if(b1){
     b1.remove('click', onAddWatchedButton);
   }
   if(b2){
     b2.remove('click', onAddQueueButton);
+  }
+  if(b3){
+    b1.remove('click', onDeleteWatchedButton);
+  }
+  if(b4){
+    b2.remove('click', onDeleteQueuedButton);
   }
   filmInfo.genre_ids = filmInfo.genre_ids.map(item => findJanres(item));
   if(filmInfo.genre_ids.length > 2){
@@ -119,6 +127,8 @@ function createModalMucrup(filmInfo){
       filmContainer.innerHTML = referense;
       document.querySelector('#addWatchedButton').addEventListener('click', onAddWatchedButton);
       document.querySelector('#addQueueButton').addEventListener('click', onAddQueueButton);
+      document.querySelector('#removeWatchedButton').addEventListener('click', onDeleteWatchedButton);
+      document.querySelector('#removeQueueButton').addEventListener('click', onDeleteQueuedButton);
 }
 
 function findFilmById(id){
@@ -134,6 +144,41 @@ function onAddQueueButton(event){
 function onAddWatchedButton(event){
   const id = Number.parseInt(event.target.dataset.id);
   setFilmToWeched(id);
+}
+
+function onDeleteWatchedButton(event){
+  const id = Number.parseInt(event.target.dataset.id);
+  removeFilmToWeched(id);
+}
+
+function onDeleteQueuedButton(event){
+  const id = Number.parseInt(event.target.dataset.id);
+  removeFilmToQueue(id);
+}
+
+
+function updateButtons(id){
+  const b1 = document.querySelector('#addWatchedButton');
+  const b2 = document.querySelector('#addQueueButton');
+  const b3 = document.querySelector('#removeWatchedButton');
+  const b4 = document.querySelector('#removeQueueedButton');
+
+  const wached = JSON.parse(localStorage.getItem('wachedFilms'));
+  const queue = JSON.parse(localStorage.getItem('queueFilms'));
+
+  if(wached.some(item => item.id === id)){
+    b2.style.display = "none";
+  }
+  else{
+    b3.style.display = "none";
+  }
+
+  if(queue.some(item => item.id === id)){
+    b2.style.display = "none";
+  }
+  else{
+    b3.style.display = "none";
+  }
 }
 
 // function changeBtn(id) {
