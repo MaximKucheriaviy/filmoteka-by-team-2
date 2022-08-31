@@ -101,7 +101,7 @@ function createModalMucrup(filmInfo){
         </tr>
       </table>
       <h3 class="title-about">About</h3>
-      <p id="" class="film-about-text">${filmInfo.overview}</p>
+      <div class="film-about-text-container"><p id="" class="film-about-text">${filmInfo.overview}</p> </div>
       <ul class="film-btn-list">
 
           <li class="film-btn-item addWatchedButton">
