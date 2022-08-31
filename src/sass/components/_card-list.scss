@@ -64,14 +64,19 @@
 
 @include mq(tablet-only){
 width: 336px;
-margin-left: auto;
-margin-right: auto;
+// margin-left: auto;
+// margin-right: auto;
+margin-right: 32px;
 margin-bottom: 32px;
 
 &:nth-last-child(-n + 2) {
         @include mq(desktop) {
             margin-bottom: 0;
         }
+    }
+
+    &:nth-child(2n + 2){
+        margin-right: 0;
     }
 }
 
@@ -151,6 +156,7 @@ border-radius: 5px;
 }
 
 .gallery__text-range{
+margin-left: 8px;
 padding: 1px 10px;
 font-size: 12px;
 font-weight: 500;
