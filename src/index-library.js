@@ -27,6 +27,7 @@ paginationSystem.mainList.addEventListener(
 
 function renderPage(page = 1, paginationRework = true){
     let perPage
+    showHideNoItemDivs();
     if(window.innerWidth >= 1280){
         perPage = 9
     }
@@ -43,8 +44,9 @@ function renderPage(page = 1, paginationRework = true){
     else if(pageStatus === "queue"){
         wochedObj = checkLSQueue();
     }
-    if(!wochedObj.data){
-        console.log("woched data missing");
+    if(!wochedObj.data || wochedObj.data.length === 0){
+        refs.cardList.innerHTML = "";
+        showHideNoItemDivs(pageStatus);
         return;
     }
     refs.cardList.innerHTML = "";
@@ -88,3 +90,17 @@ function queueOnClick(){
 window.addEventListener('modalButtonClick', (event) =>{
     renderPage();
 });
+
+
+function showHideNoItemDivs(param){
+    if(param === "wached"){
+        document.querySelector('.no-item-in-wached').classList.remove('visually-hidden')
+    }
+    else if(param === "queue"){
+        document.querySelector('.no-item-in-queue').classList.remove('visually-hidden')
+    }
+    else{
+        document.querySelector('.no-item-in-wached').classList.add('visually-hidden')
+        document.querySelector('.no-item-in-queue').classList.add('visually-hidden')
+    }
+}
