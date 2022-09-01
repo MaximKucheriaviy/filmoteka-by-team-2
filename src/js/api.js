@@ -14,6 +14,7 @@ export default class API {
       const data = await axios.get(this.BASE_URL_TRENDING, {
         params: { api_key: this.API_KEY, page },
       });
+      
       this.LAST_QUERY = '';
       return data;
     } catch (error) {
@@ -38,7 +39,10 @@ export default class API {
       const data = await axios.get(this.BASE_URL_SEARCH, {
         params: { api_key: this.API_KEY, query, page },
       });
-      this.LAST_QUERY = query;
+      if(data.data.total_pages !== 0){
+        this.LAST_QUERY = query;
+      }
+      
       return data;
     } catch (error) {
       console.log(error);
