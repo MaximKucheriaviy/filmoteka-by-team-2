@@ -70,10 +70,7 @@ function createModalMucrup(filmInfo){
     b2.remove('click', onDeleteQueuedButton);
   }
   filmInfo.genre_ids = filmInfo.genre_ids.map(item => findJanres(item));
-  if(filmInfo.genre_ids.length > 2){
-    filmInfo.genre_ids = filmInfo.genre_ids.slice(0, 2);
-    filmInfo.genre_ids.push('other');
-  }
+ 
   filmInfo.genre_ids = filmInfo.genre_ids.join(" ");
   const referense = `
   <div class="image-film-container">
@@ -111,7 +108,7 @@ function createModalMucrup(filmInfo){
               watched</button>
           </li>
           <li class="film-btn-item removeWatchedButton">
-          <button id="removeWatchedButton" data-id = ${filmInfo.id} class="film-add-button">Remove to
+          <button id="removeWatchedButton" data-id = ${filmInfo.id} class="film-add-button">Remove from
           watched</button>
           </li>
           <li class="film-btn-item addQueueButton">
@@ -120,7 +117,7 @@ function createModalMucrup(filmInfo){
               queue</button>
           </li>
           <li class="film-btn-item removeQueueButton">
-          <button id="removeQueueButton" data-id = ${filmInfo.id} class="film-add-button">Remove to
+          <button id="removeQueueButton" data-id = ${filmInfo.id} class="film-add-button">Remove from
 
           queue</button>
       </li>
