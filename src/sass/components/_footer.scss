@@ -1,3 +1,7 @@
+.footer{
+  flex-shrink: 0;
+}
+
 .footer-wra {
     margin-top: 60px;
     width: 100%;
@@ -5,9 +9,7 @@
     background-color: #F7F7F7;
     display:flex;
     align-items:center;
-    justify-content: center;
-
-    
+    justify-content: center; 
 }
 
 
