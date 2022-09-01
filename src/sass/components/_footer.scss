@@ -148,7 +148,7 @@ display: block;
     
     margin-left: 15px;
     margin-top: 15px;
-    max-width: 270px;
+    max-width: 27px;
     
 
     @include mq (tablet) {
@@ -190,8 +190,39 @@ display: block;
     font-size: 16px;
     line-height: 1.18;
     text-align: center;
-    margin-bottom: 10px;
+   
+
   }
+
+  .footer-info{
+    display: inline-block;
+    margin-bottom: 10px;
+    
+  }
+
+.footer-text{
+  display: block;
+  white-space: pre-line;
+  
+ 
+
+
+
+  @include mq (tablet) {
+    display: inline-block;
+   
+  }
+  @include mq(desktop) {
+  display: inline-block;
+  
+
+ 
+  }
+
+
+}
+
+
   
   .team-captiom-title {
     padding-top: 30px;
