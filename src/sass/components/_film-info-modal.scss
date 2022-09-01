@@ -24,12 +24,12 @@
     padding: 48px 20px 40px 20px;
     @include mq (tablet) {
       width: 704px;
-      height: 552px;
+      // height: 552px;
       padding: 40px 72px 40px 36px;
     }
     @include mq(desktop) {
       width: 806px;
-      height: 552px;
+      // height: 552px;
       padding: 40px 12px;
     }
   }
@@ -62,16 +62,16 @@
   }
 .image-film-container {
   width: 240px;
-  height: 357px;
+  // height: 357px;
   margin-bottom: 20px;
   @include mq (tablet) {
     width: 264px;
-    height: 374px;
+    // height: 374px;
     margin-right: 68px;
   }
   @include mq (desktop) {
     width: 375px;
-    height: 478px;
+    // height: 478px;
     margin-right: 16px;
   }
 }
@@ -81,11 +81,11 @@
   object-fit: cover;	
   @include mq (tablet) {
     width: 264px;
-    // height: 374px;
+    height: 374px;
   }
   @include mq (desktop) {
     width: 375px;
-    // height: 478px;
+    height: 478px;
   }
 }
 .film-title {
@@ -171,6 +171,11 @@ text-transform: uppercase;
 color:#000000;
 margin-bottom: 8px;
 }
+.film-about-text-container {
+  height: 100px;
+  overflow-y: scroll;
+  margin-bottom: 20px;
+}
 .film-about-text {
 width: 240px;
 font-size: 12px;
@@ -190,12 +195,9 @@ margin-bottom: 26px;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 }
-.film-btn-item {
-  &:first-child {
-    margin-right: 20px;
-  }
-}
+
 .film-add-button {
   width: 110px;
   height: 44px;
