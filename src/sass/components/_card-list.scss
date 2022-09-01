@@ -167,6 +167,27 @@ border-radius: 5px;
 }
 
 
+.no-item-in-wached,
+.no-item-in-queue  {
+    color: #63575d;
+    display: flex;
+    justify-content: center;
+
+    @include mq(mobile-only) {
+        font-size: 22px;
+    }
+
+    @include mq(tablet) {
+        font-size: 36px;
+    }
+
+    @include mq(desktop) {
+        font-size: 44px;
+    }
+}
+
+
+
 
 //  @include mq(mobile-only) {}
 
