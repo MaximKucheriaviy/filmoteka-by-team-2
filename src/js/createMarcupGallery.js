@@ -29,7 +29,8 @@ const createMarcupGallery = (data, flag) => {
           first_air_date ||
           '2010'
         ).slice(0, 4)}
-        <span class = "gallery__text-range">${vote_average}</span> </p>
+        </p>
+        <span class = "gallery__text-range">${vote_average}</span> 
              </button>
         </li>`,
       ''
