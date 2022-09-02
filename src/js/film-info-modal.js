@@ -84,7 +84,6 @@ function createModalMucrup({
   if (b4) {
     b2.remove('click', onDeleteQueuedButton);
   }
-  genre_ids = genre_ids.map(item => findJanres(item)).join(' ');
 
   const referense = `
   <div class="image-film-container">
@@ -113,7 +112,9 @@ function createModalMucrup({
         </tr>
         <tr class="film-about-textrow">
           <td>genre</td>
-          <td class="textrow-genres">${genre_ids}</td>
+          <td class="textrow-genres">${genre_ids
+            .map(item => findJanres(item))
+            .join(' ')}</td>
         </tr>
       </table>
       <h3 class="title-about">About</h3>
