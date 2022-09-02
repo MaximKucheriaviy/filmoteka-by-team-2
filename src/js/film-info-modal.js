@@ -99,12 +99,14 @@ function createModalMucrup({
         <tr class="film-about-textrow">
           <td>vote / votes</td>
 
-          <td class="textrow-id"><span class="inbox-id">${vote_average}</span><span class= "inbox-slash"> /</span><span class = "inbox-span">${vote_count}</span></td>
+          <td class="textrow-id"><span class="inbox-id">${vote_average.toFixed(
+            1
+          )}</span><span class= "inbox-slash"> /</span><span class = "inbox-span">${vote_count}</span></td>
 
         </tr>
         <tr class="film-about-textrow">
           <td>popularity</td>
-          <td class="textrow-id">${popularity.toFixed(2)}</td>
+          <td class="textrow-id">${popularity.toFixed(1)}</td>
         </tr>
         <tr class="film-about-textrow">
           <td>original title</td>
@@ -219,13 +221,3 @@ function updateButtons(id) {
     b3.style.display = 'block';
   }
 }
-
-// function changeBtn(id) {
-//   const filmId = Number.parseInt(event.target.dataset.id)
-//   const filmWatched = JSON.parse(localStorage.getItem("renderedCards"));
-//   const result = filmWatched.find(item => item.id === filmId)
-//   if(result) {
-//     onAddWatchedButton()
-//   }
-//     onAddQueueButton()
-// }
