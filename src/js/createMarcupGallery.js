@@ -2,67 +2,6 @@ import findJanres from './findJanreWithId';
 const createMarcupGallery = (data, flag) => {
   // вносим объект как строку в LocalStorage
   localStorage.setItem('reneredCards', JSON.stringify(data));
-  if (flag) {
-    return data.reduce(
-      (
-        acc,
-        {
-          poster_path,
-          title,
-          genre_ids,
-          id,
-          release_date,
-          vote_average,
-          name,
-          first_air_date,
-        }
-      ) =>
-        acc +
-        `<li class="gallery__item">
-      <button type="button" data-id="${id}" data-click class ="gallery__button">
-          <img src="https://image.tmdb.org/t/p/w500/${poster_path}"  alt="${
-          title || name
-        }" class ="gallery__img"  loading="lazy">
-           <h3 class =" gallery__title">${title || name}</h3>
-             <p class="gallery__text">${renderGenres(genre_ids)} | ${(
-          release_date ||
-          first_air_date ||
-          '2010'
-        ).slice(0, 4)}
-        </p>
-        <span class = "gallery__text-range">${vote_average}</span> 
-             </button>
-        </li>`,
-      ''
-    );
-  }
-  return data.reduce(
-    (
-      acc,
-      { poster_path, title, genre_ids, id, release_date, name, first_air_date }
-    ) =>
-      acc +
-      `  <li class="gallery__item">
-      <button type="button" data-id="${id}" data-click class ="gallery__button">
-          <img src="https://image.tmdb.org/t/p/w500/${poster_path}"  alt="${
-        title || name
-      }" class ="gallery__img"  loading="lazy">
-           <h3 class ="gallery__title">${title || name}</h3>
-             <p class="gallery__text">${renderGenres(genre_ids)} | ${(
-        release_date ||
-        first_air_date ||
-        '2010'
-      ).slice(0, 4)}
-      </p>
-             </button>
-        </li>`,
-    ''
-  );
-};
-
-const createMarcupGalleryAlt = (data, flag) => {
-  // вносим объект как строку в LocalStorage
-  localStorage.setItem('reneredCards', JSON.stringify(data));
   return data.map(
     ({
       base_url_post = 'https://image.tmdb.org/t/p/w500/',
@@ -147,4 +86,4 @@ function CaptchaPosterPath(base_url, url_patch) {
   return base_url + url_patch;
 }
 
-export { createMarcupGalleryAlt, createMarcupGallery, CaptchaPosterPath };
+export { createMarcupGallery, CaptchaPosterPath };
