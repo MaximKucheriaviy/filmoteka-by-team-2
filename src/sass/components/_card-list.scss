@@ -164,7 +164,19 @@ text-align: center;
 color: rgba(255, 255, 255, 1);;
 background-color: rgba(255, 107, 1, 1);;
 border-radius: 5px;
+
+@include mq(desktop) {
+    padding: 3px 12px;
+    font-size: 17px;
+    font-weight: 400;
 }
+}
+
+// .gallery__text > .gallery__text-range {
+//     display: inline-block;
+//     align-items: center;
+    
+// }
 
 
 .no-item-in-wached,
