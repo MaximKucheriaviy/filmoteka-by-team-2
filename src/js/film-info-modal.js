@@ -55,7 +55,7 @@ export default function infoFilm() {
 
 function createModalMucrup({
   base_url_post = 'https://image.tmdb.org/t/p/w500/',
-  genre_ids,
+  genre_ids = [],
   poster_path,
   vote_count,
   vote_average,
