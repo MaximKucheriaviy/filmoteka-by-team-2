@@ -75,17 +75,17 @@
     margin-right: 16px;
   }
 }
-.image-film {
+.film-image {
   width: 240px;
-  height: 100%;
+  
   object-fit: cover;	
   @include mq (tablet) {
     width: 264px;
-    height: 374px;
+    
   }
   @include mq (desktop) {
     width: 375px;
-    height: 478px;
+    
   }
 }
 .film-title {
